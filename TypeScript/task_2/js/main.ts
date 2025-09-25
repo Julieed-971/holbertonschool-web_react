@@ -42,12 +42,24 @@ const createEmployee = (salary: number | string): Director | Teacher => {
     }
 }
 
-const emp1 = createEmployee(200);
-console.log(emp1 instanceof Teacher ? "Teacher" : "Director");
+const isDirector = (employee: Director | Teacher): employee is Director => {
+    return (employee as Director).workDirectorTasks !== undefined;
+}
 
-const emp2 = createEmployee(1000);
-console.log(emp2 instanceof Teacher ? "Teacher" : "Director");
+const executeWork = (employee: Director | Teacher): string => {
+    if (isDirector(employee)) {
+        return employee.workDirectorTasks();
+    } else {
+        return employee.workTeacherTasks();
+    }
+}
 
-const emp3 = createEmployee('$500');
-console.log(emp3 instanceof Teacher ? "Teacher" : "Director");
+type Subjects = "Math" | "History";
 
+const teachClass = (todayClass: Subjects): string => {
+    if (todayClass === "Math") {
+        return "Teaching Math";
+    } else {
+        return "Teaching History";
+    }
+}

@@ -84,7 +84,17 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 <img src="./taskScreenShots/05.png">
 </details>
 
+<details close><summary>
+
 ### Task 6. Creating functions specific to employees
+
+</summary>
+
+<img src="./taskScreenShots/06.png">
+</details>
+
+<details close><summary>
+
 ### Task 7. String literal types
 ### Task 8. Ambient Namespaces
 ### Task 9. Namespace & Declaration merging
