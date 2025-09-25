@@ -96,6 +96,14 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 <details close><summary>
 
 ### Task 7. String literal types
+
+</summary>
+
+<img src="./taskScreenShots/07.png">
+</details>
+
+<details close><summary>
+
 ### Task 8. Ambient Namespaces
 ### Task 9. Namespace & Declaration merging
 ### Task 10. Brand convention & Nominal typing
