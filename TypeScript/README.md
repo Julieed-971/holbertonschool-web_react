@@ -31,8 +31,23 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 ## Mandatory tasks
 
+<details close><summary>
+
 ### Task 0. Creating an interface for a student
+</summary>
+
+
+<img src="./taskScreenShots/00.png">
+</details>
+
+<details close><summary>
+
 ### Task 1. Let's build a Teacher interface
+</summary>
+
+
+
+
 ### Task 2. Extending the Teacher class
 ### Task 3. Printing teachers
 ### Task 4. Writing a class
