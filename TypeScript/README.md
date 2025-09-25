@@ -75,7 +75,15 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 <img src="./taskScreenShots/04.png">
 </details>
 
+<details close><summary>
+
 ### Task 5. Advanced types Part 1
+
+</summary>
+
+<img src="./taskScreenShots/05.png">
+</details>
+
 ### Task 6. Creating functions specific to employees
 ### Task 7. String literal types
 ### Task 8. Ambient Namespaces
