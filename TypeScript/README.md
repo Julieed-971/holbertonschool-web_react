@@ -46,6 +46,10 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 </summary>
 
 
+<img src="./taskScreenShots/01.png">
+</details>
+
+<details close><summary>
 
 
 ### Task 2. Extending the Teacher class
