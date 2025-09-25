@@ -59,8 +59,13 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 <details close><summary>
 
-
 ### Task 3. Printing teachers
+
+</summary>
+
+<img src="./taskScreenShots/03.png">
+</details>
+
 ### Task 4. Writing a class
 ### Task 5. Advanced types Part 1
 ### Task 6. Creating functions specific to employees
