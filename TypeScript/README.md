@@ -45,14 +45,21 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 ### Task 1. Let's build a Teacher interface
 </summary>
 
-
 <img src="./taskScreenShots/01.png">
 </details>
 
 <details close><summary>
 
-
 ### Task 2. Extending the Teacher class
+
+</summary>
+
+<img src="./taskScreenShots/02.png">
+</details>
+
+<details close><summary>
+
+
 ### Task 3. Printing teachers
 ### Task 4. Writing a class
 ### Task 5. Advanced types Part 1
