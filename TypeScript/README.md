@@ -66,7 +66,15 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 <img src="./taskScreenShots/03.png">
 </details>
 
+<details close><summary>
+
 ### Task 4. Writing a class
+
+</summary>
+
+<img src="./taskScreenShots/04.png">
+</details>
+
 ### Task 5. Advanced types Part 1
 ### Task 6. Creating functions specific to employees
 ### Task 7. String literal types
