@@ -24,20 +24,13 @@ interface StudentConstructor {
 }
 
 interface StudentClassInterface {
-    firstName: string;
-    lastName: string;
     workOnHomework(): string;
     displayName(): string;
 }
 
 class StudentClass implements StudentClassInterface {
-    firstName: string;
-    lastName: string;
 
-    constructor(firstName: string, lastName: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+    constructor(public firstName: string, public lastName: string) {}
 
     workOnHomework(): string {
         return "Currently working";
