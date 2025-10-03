@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var lodash = require('lodash');
+var _ = require('lodash');
 
 $(document).ready(function() {
     $('body').append('<p>Holberton Dashboard</p>');
@@ -14,6 +14,6 @@ $(document).ready(function() {
         count += 1;
         $('#count').text(`${count} clicks on the button`);
     }
-    $('button').on('click', lodash.debounce(updateCounter, 500));
+    $('button').on('click', _.debounce(updateCounter, 500));
 });
 
