@@ -1,11 +1,9 @@
     require('../css/main.css');
     var $ = require('jquery');
     var _ = require('lodash');
-    import logo from '../assets/holberton-logo.jpg';
 
     $(document).ready(function() {
         $('body').append('<div id="logo"></div>')
-        $('#logo').css('background-image', `url(${logo})`);
         $('body').append('<p>Holberton Dashboard</p>');
         $('body').append('<p>Dashboard data for the students</p>');
         $('body').append('<button>Click here to get started</button>');
