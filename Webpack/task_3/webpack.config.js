@@ -3,7 +3,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  // context: path.resolve(__dirname, 'task_3'),
   entry: {
     header: '/modules/header/header.js',
     body: './modules/body/body.js',
@@ -39,6 +38,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'public'),
     },
+    open: false,
     compress: true,
     port: 8564,
   },
