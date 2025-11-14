@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    header: '/modules/header/header.js',
+    header: './modules/header/header.js',
     body: './modules/body/body.js',
     footer: './modules/footer/footer.js'
   },
