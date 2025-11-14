@@ -2,10 +2,11 @@
 node_modules/
 
 # Webpack outputs (keep index.html)
-**/public/*
-!**/public/index.html
+public
 
 # Common TS/JS build outputs
 dist/
 build/
 *.map
+
+venv/
