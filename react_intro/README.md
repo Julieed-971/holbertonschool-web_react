@@ -37,14 +37,17 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 You will need a favicon, the Holberton logo, and a close button image. Download these files and place the logo and button images in the src/assets folder, and put the favicon in the public folder.
 
-**holberton-logo.jpg**
+**holberton-logo.jpg**  
+
 <img src="readme_screenshots/holberton-logo.jpg" alt="holberton-logo.jpg">
 
 
-**favicon.ico**
+**favicon.ico**  
+
 <img src="readme_screenshots/favicon.ico" alt="favicon.ico">
 
-**close-button.png**
+**close-button.png**  
+
 <img src="readme_screenshots/close-button.png" alt="close-button.png">
 
 **Remove unused files:**
