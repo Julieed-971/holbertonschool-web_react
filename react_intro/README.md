@@ -39,16 +39,16 @@ You will need a favicon, the Holberton logo, and a close button image. Download 
 
 **holberton-logo.jpg**  
 
-<img src="readme_screenshots/holberton-logo.jpg" alt="holberton-logo.jpg">
+<img src="task_0/dashboard/src/assets/holberton-logo.jpg" alt="holberton-logo.jpg">
 
 
 **favicon.ico**  
 
-<img src="readme_screenshots/favicon.ico" alt="favicon.ico">
+<img src="task_0/dashboard/public/favicon.ico" alt="favicon.ico">
 
 **close-button.png**  
 
-<img src="readme_screenshots/close-button.png" alt="close-button.png">
+<img src="task_0/dashboard/src/assets/close-button.png" alt="close-button.png">
 
 **Remove unused files:**
 - `index.css` 
