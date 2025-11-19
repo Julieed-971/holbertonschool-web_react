@@ -16,7 +16,7 @@ test('renders login and copyright paragraph with the correct content', async () 
         expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school$`, 'i')))
     } 
     else {
-                expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school main dashboard$`, 'i')))
+        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school main dashboard$`, 'i')))
     }
     
 })
