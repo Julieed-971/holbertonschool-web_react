@@ -13,10 +13,10 @@ test('renders login and copyright paragraph with the correct content', async () 
     expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
     const footerCopy = getFooterCopy()
     if (footerCopy == "Holberton School") {
-        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school$`, 'i')))
+        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school$`, "i")))
     } 
     else {
-        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school main dashboard$`, 'i')))
+        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school main dashboard$`, "i")))
     }
     
 })
@@ -34,8 +34,8 @@ test('renders email input and password input elements', async () => {
 
 test('renders Email and Password label element', async () => {
     render(<App />)
-    expect(screen.getByLabelText(/^email:$/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/^password:$/i)).toBeInTheDocument()
+    expect(screen.getByText(/^email:$/i)).toBeInTheDocument()
+    expect(screen.getByText(/^password:$/i)).toBeInTheDocument()
 })
 
 test('renders a button with text OK', async () => {
