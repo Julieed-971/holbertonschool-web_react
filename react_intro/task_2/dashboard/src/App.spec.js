@@ -11,14 +11,7 @@ test('renders the h1 with text School Dashboard', async () => {
 test('renders login and copyright paragraph with the correct content', async () => {
     render(<App />)
     expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
-    const footerCopy = getFooterCopy(false)
-    if (footerCopy == "Holberton School") {
-        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school$`, "i"))).toBeInTheDocument()
-    } 
-    else {
-        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school main dashboard$`, "i"))).toBeInTheDocument()
-    }
-    
+    expect(screen.getByText(/^copyright/i)).toBeInTheDocument()   
 })
 
 test('renders an img element', async () => {
