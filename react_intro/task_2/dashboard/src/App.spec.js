@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react'
 import App from './App.jsx'
-import { getCurrentYear, getFooterCopy } from './utils'
 
 test('renders the h1 with text School Dashboard', async () => {
     render(<App />)
