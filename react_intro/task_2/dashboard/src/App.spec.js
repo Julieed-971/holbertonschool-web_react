@@ -29,6 +29,7 @@ test('renders an img element', async () => {
 test('renders email input and password input elements', async () => {
     render(<App />)
     expect(screen.getByRole('textbox', {name: /^email:$/i})).toBeInTheDocument()
+    expect(screen.getByRole('textbox', {name: /^password:$/i})).toBeInTheDocument()
 })
 
 test('renders Email and Password label element', async () => {
