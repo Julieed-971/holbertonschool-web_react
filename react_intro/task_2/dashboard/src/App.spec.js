@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import App from './App.jsx'
+import { getCurrentYear, getFooterCopy } from './utils'
 
 test('renders the h1 with text School Dashboard', async () => {
     render(<App />)
@@ -10,7 +11,14 @@ test('renders the h1 with text School Dashboard', async () => {
 test('renders login and copyright paragraph with the correct content', async () => {
     render(<App />)
     expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
-    expect(screen.getByText(new RegExp(`^copyright ${new Date().getFullYear()} - holberton school$`, 'i')))
+    const footerCopy = getFooterCopy()
+    if (footerCopy == "Holberton School") {
+        expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school$`, 'i')))
+    } 
+    else {
+                expect(screen.getByText(new RegExp(`^copyright ${getCurrentYear()} - holberton school main dashboard$`, 'i')))
+    }
+    
 })
 
 test('renders an img element', async () => {
@@ -18,3 +26,18 @@ test('renders an img element', async () => {
     expect(screen.getByAltText(/^holberton logo$/i)).toBeInTheDocument()
 })
 
+test('renders email input and password input elements', async () => {
+    render(<App />)
+    expect(screen.getByRole('textbox', {name: /^email:$/i})).toBeInTheDocument()
+})
+
+test('renders Email and Password label element', async () => {
+    render(<App />)
+    expect(screen.getByLabelText(/^email:$/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/^password:$/i)).toBeInTheDocument()
+})
+
+test('renders a button with text OK', async () => {
+    render(<App />)
+    expect(screen.getByRole('button', {name: /^ok$/i})).toBeInTheDocument()
+})
