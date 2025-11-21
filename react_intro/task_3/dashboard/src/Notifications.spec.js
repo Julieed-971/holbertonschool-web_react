@@ -19,6 +19,6 @@ test('Renders exactly 3 li elements', () => {
 test('Clicking the close button logs Close button has been clicked to the console', () => {
     render(<Notifications />)
     console.log = jest.fn()
-    fireEvent.click(screen.getByRole('button'))
+    fireEvent.click(screen.getByRole('button', { name: /^close$/i}))
     expect(console.log).toHaveBeenCalledWith("Close button has been clicked")
 })
