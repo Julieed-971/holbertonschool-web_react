@@ -47,6 +47,7 @@ h1, h2, h3, h4, h5, h6, p, ol, ul {
   border-top: var(--primary-color) 3px solid;
   font-family: var(--h1-font);
   justify-content: center;
+  font-style: italic;
 }
 
 .App-footer p {
