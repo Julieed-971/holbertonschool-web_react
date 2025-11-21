@@ -31,7 +31,7 @@ function App() {
         </form>
       </div>
       <div className="App-footer">
-        <p>Copyright {currentYear} - {footerCopy}</p>
+        <p>Copyright {currentYear} {footerCopy}</p>
       </div>
     </>
   )
