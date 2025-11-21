@@ -20,5 +20,5 @@ test('Clicking the close button logs Close button has been clicked to the consol
     render(<Notifications />)
     console.log = jest.fn()
     fireEvent.click(screen.getByRole('button', { name: /^close$/i}))
-    expect(console.log).toHaveBeenCalledWith("Close button has been clicked")
+    expect(console.log).toHaveBeenCalledWith("close button has been clicked")
 })
