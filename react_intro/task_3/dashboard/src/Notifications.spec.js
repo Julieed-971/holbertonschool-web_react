@@ -8,7 +8,7 @@ test('Renders the notifications title', () => {
 
 test('Renders a button in the notifications', () => {
     render(<Notifications />)
-    expect(screen.getByRole('button')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^close$/i})).toBeInTheDocument()
 })
 
 test('Renders exactly 3 li elements', () => {
