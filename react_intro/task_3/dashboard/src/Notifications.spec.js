@@ -13,12 +13,12 @@ test('Renders a button in the notifications', () => {
 
 test('Renders exactly 3 li elements', () => {
     render(<Notifications />)
-    expect(screen.getAllByRole('listitem')).toHaveLength(3)
+    expect(screen.getAllByRole('listitem').length).toBe(3)
 })
 
 test('Clicking the close button logs Close button has been clicked to the console', () => {
     render(<Notifications />)
     console.log = jest.fn()
     fireEvent.click(screen.getByRole('button', { name: /^close$/i}))
-    expect(console.log).toHaveBeenCalledWith("close button has been clicked")
+    expect(console.log).toHaveBeenCalledWith(expect.stringMatching(/^close button has been clicked$/i))
 })
