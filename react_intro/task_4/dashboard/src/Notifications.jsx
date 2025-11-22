@@ -11,7 +11,7 @@ function Notifications() {
                 <ul>
                     <li data-priority="Default">New course available</li>
                     <li data-priority="Urgent">New resume available</li>
-                    <li dangerouslySetInnerHTML={latestNotification}></li>
+                    <li data-priority="Urgent" dangerouslySetInnerHTML={latestNotification}></li>
                 </ul>
                 <button style={{
                     position: 'absolute',

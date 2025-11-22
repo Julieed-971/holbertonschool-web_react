@@ -1,5 +1,5 @@
 .notification-items {
-    border: 3px dotted red;
+    border: 3px dotted #e1003c;
     padding: 10px 20px;
     position: relative;
 }
@@ -11,7 +11,7 @@
 .notification-items ul {
     margin-top: 15px;
     margin-left: 25px;
-    color: red;
+    /* color: red; */
 }
 
 li[data-priority="Default"] {
