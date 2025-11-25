@@ -22,10 +22,9 @@ test('renders 2 labels, 2 inputs and 1 button element', () => {
 test('inputs elements get focused whenever the related label is clicked', async () => {
     const user = userEvent.setup()
     render(<Login />)
-    const emailInput = screen.getByRole('textbox', {name: /^email:$/i})
+    const emailInput = screen.getByLabelText(/^email:$/i)
 
     await user.click(emailInput)
-
     expect(emailInput).toHaveFocus()
 
     const passwordInput = screen.getByLabelText(/^password:$/i)
