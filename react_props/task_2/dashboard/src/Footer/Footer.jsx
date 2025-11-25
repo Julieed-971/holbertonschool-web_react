@@ -8,7 +8,7 @@ function Footer({isIndex = false}) {
     return (
         <>
         <div className="App-footer">
-            <p>Copyright {currentYear} {footerCopy}</p>
+            <p>Copyright {currentYear} - {footerCopy}</p>
         </div>
         </>
     )

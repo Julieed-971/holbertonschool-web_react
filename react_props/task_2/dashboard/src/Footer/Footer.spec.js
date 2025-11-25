@@ -7,5 +7,5 @@ test('renders a p element string Copyright {the current year} - Holberton School
 
     const currentYear = getCurrentYear()
     const footerCopy = getFooterCopy(true)
-    expect(screen.getByText(new RegExp(`^copyright ${currentYear} ${footerCopy}$`, 'i')))
+    expect(screen.getByText(new RegExp(`copyright ${currentYear} - ${footerCopy}`, 'i'))).toBeInTheDocument()
 })

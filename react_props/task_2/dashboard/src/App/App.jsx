@@ -6,7 +6,6 @@ import Footer from '../Footer/Footer'
 
 function App() {
 
-  const notificationsList = {id, type, value}
   return (
     <>
       <div className="root-notifications">
