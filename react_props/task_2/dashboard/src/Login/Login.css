@@ -1,0 +1,17 @@
+.App-body p {
+  margin: 40px 0 10px 20px;
+}
+
+.App-body form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 5px;
+  margin-left: 20px;
+  margin-top: 15px;
+  
+}
+
+.App-body input, label[htmlFor="password"] {
+  margin-left: 10px;
+}
