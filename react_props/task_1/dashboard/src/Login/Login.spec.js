@@ -6,13 +6,13 @@ test('renders 2 labels, 2 inputs and 1 button element', () => {
     const { container } = render(<Login />)
     
     const labels = container.querySelectorAll('label')
-    expect(labels.length).toBe(2)
+    expect(labels).toHaveLength(2)
 
     const inputs = container.querySelectorAll('input')
-    expect(inputs.length).toBe(2)
+    expect(inputs).toHaveLength(2)
 
     const button = container.querySelectorAll('button')
-    expect(button.length).toBe(1)
+    expect(button).toHaveLength(1)
 
     expect(screen.getByLabelText(/^email:$/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/^password:$/i)).toBeInTheDocument()
