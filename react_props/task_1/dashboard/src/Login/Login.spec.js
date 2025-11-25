@@ -11,20 +11,20 @@ test('renders 2 labels, 2 inputs and 1 button element', () => {
     const inputs = container.querySelectorAll('input')
     expect(inputs.length).toBe(2)
 
-    expect(screen.getAllByRole('button').length).toBe(1)
+    expect(screen.getByRole('button', {name: /^ok$/i})).toBeInTheDocument()
 })
 
 test('inputs elements get focused whenever the related label is clicked', async () => {
     const user = userEvent.setup()
-    render(<Login />)
-    const emailLabel = screen.getByText('Email:').closest('label')
+    const { container } = render(<Login />)
+    const emailLabel = container.querySelector('label[for="email"]')
     const emailInput = screen.getByRole('textbox', {name: /^email:$/i})
 
     await user.click(emailLabel)
 
     expect(emailInput).toHaveFocus()
 
-    const passwordLabel = screen.getByText('Password:').closest('label')
+    const passwordLabel = container.querySelector('label[for="password"]')
     const passwordInput = screen.getByLabelText(/^password:$/i)
 
     await user.click(passwordLabel)
