@@ -3,6 +3,10 @@ import userEvent from '@testing-library/user-event'
 import Login from './Login'
 
 describe('Login Component', () => {
+    test('renders without crashing', () => {
+        render(<Login />)
+    })
+
     test('renders 2 labels, 2 inputs and 1 button element', () => {
         const { container } = render(<Login />)
         
