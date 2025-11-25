@@ -6,12 +6,12 @@ test('renders 2 labels, 2 inputs and 1 button element', () => {
     const { container } = render(<Login />)
     
     const labels = container.querySelectorAll('label')
-    expect(labels).toHaveLength(2)
+    expect(labels.length).toBe(2)
 
     const inputs = container.querySelectorAll('input')
-    expect(inputs).toHaveLength(2)
+    expect(inputs.length).toBe(2)
 
-    expect(screen.getAllByRole('button')).toHaveLength(1)
+    expect(screen.getAllByRole('button').length).toBe(1)
 })
 
 test('inputs elements get focused whenever the related label is clicked', async () => {
