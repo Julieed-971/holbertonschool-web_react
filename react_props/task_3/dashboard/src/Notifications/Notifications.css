@@ -1,0 +1,14 @@
+.notification-items {
+    border: 3px dotted red;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.notification-items img {
+    width: 10px;
+}
+
+.notification-items ul {
+    margin-top: 15px;
+    margin-left: 25px;
+}
