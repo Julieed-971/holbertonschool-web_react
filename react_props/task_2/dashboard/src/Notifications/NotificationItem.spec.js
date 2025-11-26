@@ -11,3 +11,13 @@ test('when notification prop type is "default" renders blue color li element and
     expect(listItem).toHaveStyle({ color: "rgb(0, 0, 255)" })
     expect(listItem).toHaveAttribute('data-notification-type', 'default')
 })
+
+test('when notification prop type is "urgent" renders red color li element and proper data-notification attribute', () => {
+    render(<NotificationItem 
+        type="urgent"
+        />)
+
+    const listItem = screen.getByRole('listitem')
+    expect(listItem).toHaveStyle({ color: "rgba(255, 0, 0, 1)" })
+    expect(listItem).toHaveAttribute('data-notification-type', 'urgent')
+})
