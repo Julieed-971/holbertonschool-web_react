@@ -1,13 +1,12 @@
 import { getLatestNotification } from '../utils/utils'
 
 function NotificationItem({ type = "default", html = "", value = "" }) {
-    const color = type === "default" ? "blue" : "red"
     const innerHtml = {__html: getLatestNotification()}
     if (type === "default")
         return (
             <li 
                 data-notification-type={type} 
-                style={{ color }}>
+                style={{ color: "blue" }}>
                 {value}
             </li>
         )
@@ -16,7 +15,7 @@ function NotificationItem({ type = "default", html = "", value = "" }) {
             <li 
             data-notification-type={type} 
             dangerouslySetInnerHTML={innerHtml}
-            style={{ color }}>
+            style={{ color: "red" }}>
             </li>
         )
     }
@@ -24,7 +23,7 @@ function NotificationItem({ type = "default", html = "", value = "" }) {
         return (
             <li 
             data-notification-type={type}
-            style={{ color }}
+            style={{ color: "red" }}
             >
             {value}
             </li>
