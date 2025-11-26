@@ -1,17 +1,21 @@
 import './Notifications.css'
+import NotificationItem from './NotificationItem'
 import closeButton from '../assets/close-button.png'
-import { getLatestNotification } from '../utils/utils'
 
-function Notifications() {
-    const latestNotification = { __html: getLatestNotification() }
+function Notifications({ notifications = []}) {
     return (
         <>
             <div className="notification-items">
                 <p>Here is the list of notifications</p>
                 <ul>
-                    <li data-priority="default">New course available</li>
-                    <li data-priority="urgent">New resume available</li>
-                    <li data-priority="urgent" dangerouslySetInnerHTML={latestNotification}></li>
+                    {notifications.map((notification) => (
+                        <NotificationItem 
+                            key={notification.id}
+                            type={notification.type}
+                            value={notification.value}
+                            html={notification.html} 
+                        />
+                    ))}
                 </ul>
                 <button style={{
                     position: 'absolute',

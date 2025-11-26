@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import Notifications from './Notifications'
+import { getLatestNotification } from '../utils/utils'
 
 test('Renders the notifications title', () => {
     render(<Notifications />)
@@ -12,7 +13,13 @@ test('Renders a button in the notifications', () => {
 })
 
 test('Renders exactly 3 li elements', () => {
-    render(<Notifications />)
+    const notificationsList = [
+        { id: 1, type: "default", value: "New course available" },
+        { id: 2, type: "urgent", value: "New resume available" },
+        { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
+    ]
+    
+    render(<Notifications notifications={notificationsList} />)
     expect(screen.getAllByRole('listitem').length).toBe(3)
 })
 
