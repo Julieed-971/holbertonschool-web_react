@@ -15,7 +15,7 @@ function NotificationItem({ type = "default", html = "", value = "" }) {
                 {value}
             </li>
         )
-    else if (html) {
+    else if (type === "urgent" && html) {
         return (
             <li 
             data-notification-type={type} 
@@ -24,7 +24,7 @@ function NotificationItem({ type = "default", html = "", value = "" }) {
             </li>
         )
     }
-    else {
+    else if (type === "urgent"){
         return (
             <li 
             data-notification-type={type}
