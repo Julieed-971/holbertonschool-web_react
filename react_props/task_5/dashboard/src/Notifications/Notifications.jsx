@@ -2,7 +2,7 @@ import './Notifications.css'
 import NotificationItem from './NotificationItem'
 import closeButton from '../assets/close-button.png'
 
-function Notifications({ notifications = [], displayDrawer = true }) {
+function Notifications({ notifications = [], displayDrawer = false }) {
     return (
         <>
             <div className="notification-title">Your notifications</div>
