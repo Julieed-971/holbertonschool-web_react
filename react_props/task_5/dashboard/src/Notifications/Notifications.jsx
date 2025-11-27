@@ -23,22 +23,23 @@ function Notifications({ notifications = [], displayDrawer = false }) {
                                     />
                                 ))}
                             </ul>
+                            <button style={{
+                                position: 'absolute',
+                                top: '2px',
+                                right: '2px',
+                                background: 'transparent',
+                                border: 'none',
+                                color: '#343434',
+                                cursor: 'pointer',
+                            }}
+                                onClick={() => console.log("Close button has been clicked")}
+                                aria-label='Close'>
+                                <img src={closeButton} alt="close-button" />
+                            </button>
                         </>
                     )}
 
-                    <button style={{
-                        position: 'absolute',
-                        top: '2px',
-                        right: '2px',
-                        background: 'transparent',
-                        border: 'none',
-                        color: '#343434',
-                        cursor: 'pointer',
-                    }}
-                        onClick={() => console.log("Close button has been clicked")}
-                        aria-label='Close'>
-                        <img src={closeButton} alt="close-button" />
-                    </button>
+
                 </div>
             )}
         </>
