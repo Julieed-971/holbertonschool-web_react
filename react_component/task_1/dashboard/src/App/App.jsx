@@ -8,9 +8,13 @@ import CourseList from '../CourseList/CourseList'
 import { getLatestNotification } from '../utils/utils'
 
 class App extends React.Component  {
+  static defaultProps = {
+    isLoggedIn: false,
+    logOut: () => {}
+  }
   constructor(props) {
     super(props)
-
+    
     this.state = {
       notificationsList: [
         {id: 1, type: "default", value: "New course available"},
@@ -23,6 +27,21 @@ class App extends React.Component  {
         {id: 3, name: "React", credit: 40}
       ]
     }
+  }
+
+  handleLogout = (event) => {
+      if (event.ctrlKey && event.key === "h") {
+        window.alert('Logging you out')
+        this.props.logOut()
+      }
+    }
+
+  componentDidMount() {
+    window.addEventListener("keydown", this.handleLogout)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.handleLogout)
   }
 
   render() {
