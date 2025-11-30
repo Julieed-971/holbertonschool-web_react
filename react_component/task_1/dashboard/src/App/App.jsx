@@ -30,19 +30,18 @@ class App extends React.Component  {
   }
 
   handleLogout = (event) => {
-      if (event.ctrlKey && event.key === "h" || event.key === 'H') {
-        event.preventDefault()
+      if (event.ctrlKey && event.key === "h") {
         alert('Logging you out')
         this.props.logOut()
       }
     }
 
   componentDidMount() {
-    window.addEventListener("keydown", this.handleLogout)
+    document.addEventListener("keydown", this.handleLogout)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("keydown", this.handleLogout)
+    document.removeEventListener("keydown", this.handleLogout)
   }
 
   render() {

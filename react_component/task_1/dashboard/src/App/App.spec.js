@@ -29,7 +29,7 @@ test('verify that logOut is called once when ctrl+h are pressed', () => {
 
     render(<App logOut={mockLogOut}/>)
 
-    fireEvent.keyDown(window, {key: 'h', ctrlKey: true})
+    fireEvent.keyDown(document, {key: 'h', ctrlKey: true})
     expect(mockLogOut).toHaveBeenCalledTimes(1)
     alertSpy.mockRestore()
 })
@@ -37,7 +37,7 @@ test('verify that logOut is called once when ctrl+h are pressed', () => {
 test('checks that alert function is called with "Logging you out" message', () => {
     const alertSpy = jest.spyOn(window, 'alert').mockImplementation()
     render(<App />)
-    fireEvent.keyDown(window, {
+    fireEvent.keyDown(document, {
         key: 'h',
         ctrlKey: true
     })
