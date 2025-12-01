@@ -44,3 +44,12 @@ test('checks that alert function is called with "Logging you out" message', () =
     expect(alertSpy).toHaveBeenCalledWith('Logging you out')
     alertSpy.mockRestore()
 })
+
+test('check that a title with the text News from the School, and a paragraph element with the text Holberton School News goes here are displayed by default in the App component', () => {
+    render(<App />)
+    const bodySectionTitle = screen.getByText(/news from the school/i)
+    const bodySectionParagraph = screen.getByText(/holberton school news goes here/i)
+
+    expect(bodySectionTitle).toBeInTheDocument()
+    expect(bodySectionParagraph).toBeInTheDocument()
+})

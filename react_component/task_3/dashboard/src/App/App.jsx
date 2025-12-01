@@ -1,5 +1,7 @@
 import './App.css'
 import React from 'react'
+import BodySection from '../BodySection/BodySection'
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
 import Notifications from '../Notifications/Notifications'
 import Header from '../Header/Header'
 import Login from '../Login/Login'
@@ -57,15 +59,26 @@ class App extends React.Component  {
           <Header />
         </div>
         {isLoggedIn ? (
+          <BodySectionWithMarginBottom title="Course list">
           <div className="root-courses">
             <CourseList courses={coursesList}/>
           </div>    
+          </BodySectionWithMarginBottom>
           ) : (
+            <BodySectionWithMarginBottom title="Log in to continue">
             <div className="root-login">
               <Login />
             </div>
+            </BodySectionWithMarginBottom>
           )
         }
+        <div className="root-bodySection">
+          <BodySection title="News from the School">
+            <p>
+              Holberton School News goes here
+            </p>
+          </BodySection>
+        </div>
         <div className="root-footer">
           <Footer />
         </div>
