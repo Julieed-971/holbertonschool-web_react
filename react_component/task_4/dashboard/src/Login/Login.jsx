@@ -24,4 +24,5 @@ class Login extends React.Component {
     )
   }
 }
-export default withLogging(Login)
+const LoginWithLogging = withLogging(Login)
+export default LoginWithLogging
