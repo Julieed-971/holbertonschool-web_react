@@ -8,6 +8,20 @@ const mockNotificationsList = [
         { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
     ]
 
+const mockNotificationsList1 = [
+        { id: 1, type: "default", value: "New course available" },
+        { id: 2, type: "urgent", value: "New resume available" },
+    ]
+
+const mockNotificationsList2 = [
+        { id: 1, type: "default", value: "New curriculum available" },
+        { id: 2, type: "urgent", value: "New cover letter available" },
+    ]
+
+    const mockNotificationsList3 = [
+        { id: 1, type: "default", value: "New course available" },
+    ]
+
 let consoleSpy
 
 beforeEach(() => {
@@ -69,4 +83,28 @@ test('when simulating a click on a notification item, logs to the console the co
 
     fireEvent.click(liItem)
     expect(consoleSpy).toHaveBeenCalledWith("Notification 1 has been marked as read")
+})
+
+test('Doesn\'t re-render the Notifications component when notifications prop length remains the same', () => {
+    const { rerender } = render(<Notifications notifications={mockNotificationsList1} displayDrawer={true} />)
+
+    const renderSpy = jest.spyOn(Notifications.prototype, 'render')
+
+    rerender(<Notifications notifications={mockNotificationsList2} displayDrawer={true} />)
+
+    expect(renderSpy).not.toHaveBeenCalled()
+
+    renderSpy.mockRestore()
+})
+
+test('Does re-render the Notifications component when notifications prop length changes', () => {
+    const { rerender } = render(<Notifications notifications={mockNotificationsList3} displayDrawer={true} />)
+
+    const renderSpy = jest.spyOn(Notifications.prototype, 'render')
+
+    rerender(<Notifications notifications={mockNotificationsList2} displayDrawer={true} />)
+
+    expect(renderSpy).toHaveBeenCalled()
+
+    renderSpy.mockRestore()
 })
