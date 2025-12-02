@@ -4,14 +4,11 @@ import BodySection from '../BodySection/BodySection'
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
 import Notifications from '../Notifications/Notifications'
 import Header from '../Header/Header'
-import Login from '../Login/Login'
+import LoginWithLogging from '../Login/Login'
 import Footer from '../Footer/Footer'
-import CourseList from '../CourseList/CourseList'
+import CourseListWithLogging from '../CourseList/CourseList'
 import { getLatestNotification } from '../utils/utils'
-import WithLogging from '../HOC/WithLogging'
 
-const LoginWithLogging = WithLogging(Login)
-const CourseListWithLogging = WithLogging(CourseList)
 
 class App extends React.Component  {
   static defaultProps = {

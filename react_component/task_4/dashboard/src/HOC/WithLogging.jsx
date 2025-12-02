@@ -1,15 +1,7 @@
 import React from "react"
 
 function WithLogging(WrappedComponent) {
-    let wrappedComponentName 
-    
-    if (typeof WrappedComponent === 'string') {
-        wrappedComponentName = 'Component'
-    } else {
-        wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component'
-    }
-
-    
+    const wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component'
     
     return class extends React.Component {
         static displayName = `WithLogging(${wrappedComponentName})`
