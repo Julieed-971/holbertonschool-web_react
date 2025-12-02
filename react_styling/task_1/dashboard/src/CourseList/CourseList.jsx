@@ -11,11 +11,13 @@ class CourseList extends React.Component {
         const { courses } = this.props
         if (courses.length === 0) {
             return (
-                <table id="CourseList">
+                <div className="w-4/5 mx-auto">
+                <table id="CourseList" className='w-full'>
                     <thead>
                         <CourseListRow textFirstCell="No course available yet" isHeader={true} />
                     </thead>
                 </table>
+                </div>
             )
         } else {
             return (
