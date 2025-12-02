@@ -1,6 +1,16 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App.jsx'
 
+let consoleSpy
+
+beforeEach(() => {
+    consoleSpy = jest.spyOn(console, 'log').mockImplementation()
+})
+
+afterEach(() => {
+    consoleSpy.mockRestore()
+})
+
 test('renders login and copyright paragraph with the correct content', async () => {
     render(<App />)
     expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()

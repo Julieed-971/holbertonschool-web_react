@@ -8,6 +8,10 @@ import Login from '../Login/Login'
 import Footer from '../Footer/Footer'
 import CourseList from '../CourseList/CourseList'
 import { getLatestNotification } from '../utils/utils'
+import WithLogging from '../HOC/WithLogging'
+
+const LoginWithLogging = WithLogging(Login)
+const CourseListWithLogging = WithLogging(CourseList)
 
 class App extends React.Component  {
   static defaultProps = {
@@ -61,13 +65,13 @@ class App extends React.Component  {
         {isLoggedIn ? (
           <BodySectionWithMarginBottom title="Course list">
           <div className="root-courses">
-            <CourseList courses={coursesList}/>
+            <CourseListWithLogging courses={coursesList}/>
           </div>    
           </BodySectionWithMarginBottom>
           ) : (
             <BodySectionWithMarginBottom title="Log in to continue">
             <div className="root-login">
-              <Login />
+              <LoginWithLogging />
             </div>
             </BodySectionWithMarginBottom>
           )

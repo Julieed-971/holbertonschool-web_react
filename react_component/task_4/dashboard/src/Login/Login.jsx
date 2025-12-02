@@ -1,6 +1,5 @@
 import React from 'react'
 import './Login.css'
-import withLogging from '../HOC/WithLogging'
 
 class Login extends React.Component {
   render() {
@@ -24,5 +23,4 @@ class Login extends React.Component {
     )
   }
 }
-const LoginWithLogging = withLogging(Login)
-export default LoginWithLogging
+export default Login

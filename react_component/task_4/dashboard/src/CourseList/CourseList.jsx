@@ -1,7 +1,6 @@
 import React from 'react';
 import './CourseList.css'
 import CourseListRow from "./CourseListRow";
-import withLogging from '../HOC/WithLogging';
 
 class CourseList extends React.Component {
     static defaultProps = {
@@ -39,5 +38,4 @@ class CourseList extends React.Component {
         }
     }
 }
-const CourseListWithLogging = withLogging(CourseList)
-export default CourseListWithLogging
+export default CourseList
