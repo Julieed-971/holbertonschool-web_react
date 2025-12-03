@@ -11,7 +11,7 @@ import { getLatestNotification } from '../utils/utils'
 
 class App extends React.Component {
   static defaultProps = {
-    isLoggedIn: false,
+    isLoggedIn: true,
     logOut: () => { }
   }
   constructor(props) {
@@ -53,7 +53,7 @@ class App extends React.Component {
     return (
       <>
         <div className="relative px-3 min-h-screen">
-          <Notifications notifications={notificationsList} displayDrawer={false} />
+          <Notifications notifications={notificationsList} displayDrawer={true} />
         <div className="flex-1">
             <Header />
           {isLoggedIn ? (
