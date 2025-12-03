@@ -3,8 +3,8 @@ function CourseListRow({
     textFirstCell = "",
     textSecondCell = null
 }) {
-    const headerColor = "bg-[color-mix(in_srgb,var(--color-table-header)_66%,transparent)]"
-    const rowColor = "bg-[color-mix(in_srgb,var(--color-table-rows)_45%,transparent)]"
+    const headerColor = "bg-[var(--color-table-header)]/[0.66]"
+    const rowColor = "bg-[var(--color-table-rows)]/[0.45]"
     const headerBorder = "border border-gray-400"
     const cellBorder = "border border-gray-400 pl-2"
     if (isHeader) {

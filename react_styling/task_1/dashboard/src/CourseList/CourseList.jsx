@@ -21,7 +21,7 @@ class CourseList extends React.Component {
         } else {
             return (
                 <div className="w-4/5 mx-auto">
-                <table id="CourseList" className="w-full">
+                <table id="CourseList" className="w-full border-collapse border border-gray-300">
                     <thead>
                         <CourseListRow textFirstCell="Available courses" isHeader={true} />
                         <CourseListRow textFirstCell="Course name" textSecondCell="Credit" isHeader={true} />
