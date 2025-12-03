@@ -12,13 +12,13 @@ afterEach(() => {
 })
 
 test('renders login and copyright paragraph with the correct content', async () => {
-    render(<App />)
+    render(<App isLoggedIn={false}/>)
     expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
     expect(screen.getByText(/^copyright/i)).toBeInTheDocument()   
 })
 
 test('renders Email and Password label element', async () => {
-    render(<App />)
+    render(<App isLoggedIn={false}  />)
     expect(screen.getByText(/^email:$/i)).toBeInTheDocument()
     expect(screen.getByText(/^password:$/i)).toBeInTheDocument()
 })
