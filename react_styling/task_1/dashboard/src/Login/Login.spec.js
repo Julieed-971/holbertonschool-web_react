@@ -2,6 +2,16 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Login from './Login'
 
+let consoleSpy
+
+beforeEach(() => {
+    consoleSpy = jest.spyOn(console, 'log').mockImplementation()
+})
+
+afterEach(() => {
+    consoleSpy.mockRestore()
+})
+
 test('renders 2 labels, 2 inputs and 1 button element', () => {
     const { container } = render(<Login />)
     
