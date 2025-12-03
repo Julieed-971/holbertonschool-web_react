@@ -52,26 +52,27 @@ class App extends React.Component {
 
     return (
       <>
-        <div className="relative px-3 min-h-screen">
-          <Notifications notifications={notificationsList} displayDrawer={true} />
-        <div className="flex-1">
+        <div className="relative px-3 min-h-screen flex flex-col">
+          <div className="absolute top-0 right-0 z-10">
+            <Notifications notifications={notificationsList} displayDrawer={false} />
+          </div>
+          <div className="flex-1">
             <Header />
-          {isLoggedIn ? (
-            <BodySectionWithMarginBottom title="Course list">
+            {isLoggedIn ? (
+              <BodySectionWithMarginBottom title="Course list">
                 <CourseListWithLogging courses={coursesList} />
-            </BodySectionWithMarginBottom>
-          ) : (
-            <BodySectionWithMarginBottom title="Log in to continue">
+              </BodySectionWithMarginBottom>
+            ) : (
+              <BodySectionWithMarginBottom title="Log in to continue">
                 <LoginWithLogging />
-            </BodySectionWithMarginBottom>
-          )
-          }
+              </BodySectionWithMarginBottom>
+            )
+            }
             <BodySection title="News from the School">
               <p>
-                Holberton School News goes here
-              </p>
+                ipsum Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique, asperiores architecto blanditiis fuga doloribus sit illum aliquid ea distinctio minus accusantium, impedit quo voluptatibus ut magni dicta. Recusandae, quia dicta?              </p>
             </BodySection>
-        </div>
+          </div>
           <Footer />
         </div>
       </>
