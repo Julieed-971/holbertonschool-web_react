@@ -46,12 +46,6 @@ test('Renders exactly 3 li elements', () => {
     expect(screen.getAllByRole('listitem').length).toBe(3)
 })
 
-test('Clicking the close button logs Close button has been clicked to the console', () => {
-    render(<Notifications displayDrawer={true} notifications={mockNotificationsList}/>)
-    fireEvent.click(screen.getByRole('button', { name: /^close$/i}))
-    expect(consoleSpy).toHaveBeenCalledWith(expect.stringMatching(/^close button has been clicked$/i))
-})
-
 test('Only renders the notification-title when displayDrawer is false', () => {
     render(<Notifications displayDrawer={false} />)
     expect(screen.getByText(/your notifications/i)).toBeInTheDocument()
@@ -98,4 +92,27 @@ test('Does re-render the Notifications component when notifications prop length 
     expect(renderSpy).toHaveBeenCalled()
 
     renderSpy.mockRestore()
+})
+
+test('Checks that clicking on the menu item calls handleDisplayDrawer', () => {
+    const mockHandleDisplayDrawer = jest.fn()
+
+    render(<Notifications displayDrawer={false} handleDisplayDrawer={mockHandleDisplayDrawer}/>)
+    const yourNotifications = screen.getByText(/your notifications/i)
+
+    fireEvent.click(yourNotifications)
+    expect(mockHandleDisplayDrawer).toHaveBeenCalled()
+    mockHandleDisplayDrawer.mockRestore()
+})
+
+test('Checks that clicking on the close button calls handleHideDrawer', () => {
+    const mockHandleHideDrawer = jest.fn()
+
+    render(<Notifications displayDrawer={true} notifications={mockNotificationsList} handleHideDrawer={mockHandleHideDrawer}/>)
+
+    const closeButton = screen.getByRole('button', { name: /close/i})
+
+    fireEvent.click(closeButton)
+    expect(mockHandleHideDrawer).toHaveBeenCalled()
+    mockHandleHideDrawer.mockRestore()
 })

@@ -8,6 +8,17 @@ import Footer from '../Footer/Footer'
 import CourseListWithLogging from '../CourseList/CourseList'
 import { getLatestNotification } from '../utils/utils'
 
+const notificationsList = [
+  { id: 1, type: 'default', value: 'New course available' },
+  { id: 2, type: 'urgent', value: 'New resume available' },
+  { id: 3, type: 'urgent', html: { __html: getLatestNotification()} }
+]
+
+const coursesList = [
+  { id: 1, name: 'ES6', credit: 60 },
+  { id: 2, name: 'Webpack', credit: 20 },
+  { id: 3, name: 'React', credit: 40 }
+]
 
 class App extends React.Component {
   static defaultProps = {
@@ -16,18 +27,8 @@ class App extends React.Component {
   }
   constructor(props) {
     super(props)
-
     this.state = {
-      notificationsList: [
-        { id: 1, type: "default", value: "New course available" },
-        { id: 2, type: "urgent", value: "New resume available" },
-        { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
-      ],
-      coursesList: [
-        { id: 1, name: "ES6", credit: 60 },
-        { id: 2, name: "Webpack", credit: 20 },
-        { id: 3, name: "React", credit: 40 }
-      ]
+      displayDrawer: true      
     }
   }
 
@@ -46,15 +47,28 @@ class App extends React.Component {
     document.removeEventListener("keydown", this.handleLogout)
   }
 
+  handleDisplayDrawer = () => {
+    this.setState({ displayDrawer: true })
+  }
+
+  handleHideDrawer = () => {
+    this.setState({ displayDrawer: false })
+  }
+
   render() {
     const { isLoggedIn = false } = this.props
-    const { notificationsList, coursesList } = this.state
+    const { displayDrawer } = this.state
 
     return (
       <>
         <div className="relative px-3 min-h-screen flex flex-col">
           <div className="absolute top-0 right-0 z-10">
-            <Notifications notifications={notificationsList} displayDrawer={true} />
+            <Notifications 
+              notifications={notificationsList}
+              displayDrawer={displayDrawer}
+              handleDisplayDrawer={this.handleDisplayDrawer}
+              handleHideDrawer={this.handleHideDrawer}
+            />
           </div>
           <div className="flex-1">
             <Header />
