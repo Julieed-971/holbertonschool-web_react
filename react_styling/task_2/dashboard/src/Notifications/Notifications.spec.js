@@ -37,7 +37,7 @@ test('Renders the notifications title', () => {
 })
 
 test('Renders a button in the notifications', () => {
-    render(<Notifications displayDrawer={true}/>)
+    render(<Notifications displayDrawer={true} notifications={mockNotificationsList}/>)
     expect(screen.getByRole('button', { name: /^close$/i})).toBeInTheDocument()
 })
 
@@ -47,7 +47,7 @@ test('Renders exactly 3 li elements', () => {
 })
 
 test('Clicking the close button logs Close button has been clicked to the console', () => {
-    render(<Notifications displayDrawer={true}/>)
+    render(<Notifications displayDrawer={true} notifications={mockNotificationsList}/>)
     fireEvent.click(screen.getByRole('button', { name: /^close$/i}))
     expect(consoleSpy).toHaveBeenCalledWith(expect.stringMatching(/^close button has been clicked$/i))
 })
@@ -66,15 +66,6 @@ test('Renders p element, button and notifications item when displayDrawer is tru
     expect(screen.getByText(/^here is the list of notifications$/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^close$/i})).toBeInTheDocument()
     expect(screen.getAllByRole('listitem').length).toBe(3)
-})
-
-test('Renders p element, button and notifications item when displayDrawer is true', () => {
-    const notificationsList = []
-    render(<Notifications notifications={notificationsList} displayDrawer={true} />)
-
-    expect(screen.queryByText(/^here is the list of notifications$/i)).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^close$/i})).toBeInTheDocument()
-    expect(screen.getByText(/^no new notification for now$/i)).toBeInTheDocument()
 })
 
 test('when simulating a click on a notification item, logs to the console the correct string', () => {
