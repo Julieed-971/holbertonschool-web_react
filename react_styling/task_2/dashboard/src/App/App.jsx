@@ -23,7 +23,6 @@ class App extends React.Component  {
         {id: 1, type: "default", value: "New course available"},
         {id: 2, type: "urgent", value: "New resume available"},
         {id: 3, type: "urgent", html: { __html: getLatestNotification() }},
-        {id: 4, type: "urgent", value: "New resume available" },
       ],
       coursesList: [
         {id: 1, name: "ES6", credit: 60},
@@ -55,7 +54,7 @@ class App extends React.Component  {
     return (
       <>
         <div className="root-notifications">
-          <Notifications notifications={notificationsList} displayDrawer={false}/>
+          <Notifications notifications={notificationsList} displayDrawer={true}/>
         </div>
         <div className="root-header">
           <Header />
