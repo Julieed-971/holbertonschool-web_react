@@ -26,6 +26,11 @@ class Notifications extends React.Component {
                             <>
                                 <div className="relative">
                                     <p className='m-0'>Here is the list of notifications</p>
+                                    <button className="absolute cursor-pointer right-0 top-0 bg-transparent"
+                                        onClick={() => console.log("Close button has been clicked")}
+                                        aria-label='Close'>
+                                        <img src={closeButton} alt="close-button" className="w-3 h-3" />
+                                    </button>
                                     <ul className='list-[square] pl-5'>
                                         {notifications.map((notification) => (
                                             <NotificationItem
@@ -41,12 +46,6 @@ class Notifications extends React.Component {
                                 </div>
                             </>
                         )}
-
-                        <button className="absolute cursor-pointer right-0 top-0 bg-transparent"
-                            onClick={() => console.log("Close button has been clicked")}
-                            aria-label='Close'>
-                            <img src={closeButton} alt="close-button" className="w-3 h-3" />
-                        </button>
                     </div>
                 )}
             </>
