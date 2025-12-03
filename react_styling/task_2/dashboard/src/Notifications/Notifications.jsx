@@ -1,4 +1,3 @@
-import './Notifications.css'
 import React from 'react'
 import NotificationItem from './NotificationItem'
 import closeButton from '../assets/close-button.png'
