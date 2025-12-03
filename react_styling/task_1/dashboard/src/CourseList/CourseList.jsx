@@ -11,7 +11,7 @@ class CourseList extends React.Component {
         if (courses.length === 0) {
             return (
                 <div className="w-4/5 mx-auto">
-                <table id="CourseList"  className="w-full">
+                <table id="CourseList"  className="w-full border-collapse border border-gray-300">
                     <thead>
                         <CourseListRow textFirstCell="No course available yet" isHeader={true} />
                     </thead>

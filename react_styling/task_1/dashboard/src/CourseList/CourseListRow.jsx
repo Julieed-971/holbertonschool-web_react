@@ -3,33 +3,37 @@ function CourseListRow({
     textFirstCell = "",
     textSecondCell = null
 }) {
+    const headerColor = "bg-[color-mix(in_srgb,var(--color-table-header)_66%,transparent)]"
+    const rowColor = "bg-[color-mix(in_srgb,var(--color-table-rows)_45%,transparent)]"
+    const headerBorder = "border border-gray-400"
+    const cellBorder = "border border-gray-400 pl-2"
     if (isHeader) {
         if (textSecondCell === null) {
             return (
-                <tr className="bg-[var(--color-table-header)]/[0.66]">
-                    <th className="border border-gray-400" colSpan="2">
+                <tr className={headerColor}>
+                    <th className={headerBorder} colSpan="2">
                         {textFirstCell}
                     </th>
                 </tr>
             )
         }
         return (
-            <tr className="bg-[var(--color-table-header))]/[0.66]">
-                <th className="border border-gray-400">
+            <tr className={headerColor}>
+                <th className={headerBorder}>
                     {textFirstCell}
                 </th>
-                <th className="border border-gray-400">
+                <th className={headerBorder}>
                     {textSecondCell}
                 </th>
             </tr>
         )
     }
     return (
-        <tr className="bg-[var(--color-table-rows))]/[0.45]">
-            <td className="border border-gray-400 pl-2">
+        <tr className={rowColor}>
+            <td className={cellBorder}>
                 {textFirstCell}
             </td>
-            <td className="border border-gray-400 pl-2">
+            <td className={cellBorder}>
                 {textSecondCell}
             </td>
         </tr>
