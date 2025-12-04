@@ -1,41 +1,50 @@
-### Task 0. Adding a local state for notifications
+### Task 1. Controlled components and state callback
 
-Using the previous project (React inline styling), we have modularized our React application without worrying about interactions and state, which is usually a recommended approach to development. Now, our application is in a good position to start adding logic and state.
+Create a form within the Login component & handle login submission in `task_1/dashboard/src/Login/Login.jsx`:
 
-**Modify the App component in `task_0/dashboard/src/App/App.jsx`:**
+To solve this task, you should convert the functional Login component to a class component:
 
-Create a local state to store a `displayDrawer` element:
+- Create a local state with the value `isLoggedIn` set to `false`
+- Create a function named `handleLoginSubmit` that updates the local state by setting `isLoggedIn` to `true`
+- Wrap the input fields within a `form` element
+- Replace the button with an `input` element of type `submit`
+- When the form is submitted, call the newly created login submission handling function
 
-- Define the default value for the state in the constructor of the Class
-- Create a function named `handleDisplayDrawer` that will set the value of `displayDrawer` to `true`
-- Create a function named `handleHideDrawer` that will set the value of `displayDrawer` to `false`
+**Create controlled component:**
 
-**Modify the Notifications import in `App.jsx`:**
+- Modify the local state to add two new values: `email` and `password`. By default, both should be empty strings
+- Set the `email` and the `password` input values to the local state
+- Create two methods, `handleChangeEmail` and `handleChangePassword`:
+  - Each method should handle changes to its respective input field (Email or Password):
+    - When the user types into the email input, `handleChangeEmail` should be called
+    - When the user types into the password input, `handleChangePassword` should be called
+  - Ensure the local component state updates in real time as the user types:
+    - The email input field should update the `email` state
+    - The password input field should update the `password` state accordingly
 
-- Pass the `displayDrawer` prop to the component using the local state
-- Pass the new functions `handleDisplayDrawer` and `handleHideDrawer` as props
+**Modify state callback:**
 
-**Modify the Notifications component in `Notifications.jsx`:**
+- Modify the local state to add a new value `enableSubmit`, set to `false` by default
+- Modify the Submit button so that it is only enabled when the `enableSubmit` value is `true`
+- Enable the Submit button whenever:
+  - Both fields are not empty
+  - The email input contains a valid email address
+  - The password input contains at least 8 characters
 
-- When clicking on "Your notifications", call `handleDisplayDrawer`
-- When clicking on the close button, call `handleHideDrawer`
+**Add tests:**
 
-At this point, after reloading the React application you should be able to show or hide the notifications panel
-
-**Modify the Notifications test suite in `Notifications.spec.js`:**
-
-- Add a test to verify that clicking on the menu item calls `handleDisplayDrawer`
-- Add a test to verify that clicking on the close button calls `handleHideDrawer`
-
-**Tips:**
-
-- Remember that you implemented `shouldComponentUpdate`. You will need to modify its logic to allow the component to re-render when the `displayDrawer` prop changes
-- Remember to use spies to verify whether a function is being called. You can pass a spy as a property
+- Add a test to verify that the submit button is disabled by default
+- Add a test to verify that the button becomes enabled only after both the Email and Password inputs meet the required criteria
 
 **Requirements:**
 
-- When running the application, there should not be any errors in the console
+- The state should have all the default values set in the constructor
+- Submitting the form should not reload the page
+- The email input must be valid email address, and the password must have at least 8 characters
+- The submit input should be enabled when the above conditions are met
+- There should not be any linting errors in the console when running the application
 
-# Author
+**Tips:**
 
-Julie Dedieu: [Julieed-971](https://github.com/Julieed-971/)
+- Use a regular expression (Regex) to validate the email input
+- At this stage, clicking the enabled Submit input does not render the CourseList component. This functionality will be addressed in the next task
