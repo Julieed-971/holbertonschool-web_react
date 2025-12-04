@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import App from './App.jsx'
+import userEvent from '@testing-library/user-event'
 
 let consoleSpy
 
@@ -11,40 +12,51 @@ afterEach(() => {
     consoleSpy.mockRestore()
 })
 
-test('renders login and copyright paragraph with the correct content', async () => {
-    render(<App isLoggedIn={false}/>)
+test('Renders login and copyright paragraph with the correct content', async () => {
+    render(<App />)
     expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
     expect(screen.getByText(/^copyright/i)).toBeInTheDocument()   
 })
 
-test('renders Email and Password label element', async () => {
-    render(<App isLoggedIn={false}/>)
+test('Renders Email and Password label element', async () => {
+    render(<App />)
     expect(screen.getByText(/^email:$/i)).toBeInTheDocument()
     expect(screen.getByText(/^password:$/i)).toBeInTheDocument()
 })
 
-test('renders the Login component when isLoggedIn is false', () => {
-    render(<App isLoggedIn={false} />)
+test('Renders the Login component when isLoggedIn is false', () => {
+    render(<App />)
     expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
 })
 
-test('renders the CourseList component when isLoggedIn is true', () => {
-    render(<App isLoggedIn={true} />)
+test('Renders the CourseList component when isLoggedIn is true', async() => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const emailInput = screen.getByLabelText(/email/i)
+    const passwordInput = screen.getByLabelText(/password/i)
+    const submitButton = screen.getByRole('button', { name: /ok/i })
+
+    await user.type(emailInput, 'gina.linetti@nypd.com')
+    await user.type(passwordInput, 'verybadpassword')
+    await user.click(submitButton)
+
     expect(screen.getByRole('table')).toBeInTheDocument()
 })
 
-test('verify that logOut is called once when ctrl+h are pressed', () => {
-    const mockLogOut = jest.fn()
+test('Verify that alert is called once when ctrl+h are pressed', () => {
     const alertSpy = jest.spyOn(window, 'alert').mockImplementation()
 
-    render(<App logOut={mockLogOut}/>)
+    render(<App />)
 
     fireEvent.keyDown(document, {key: 'h', ctrlKey: true})
-    expect(mockLogOut).toHaveBeenCalledTimes(1)
+    expect(alertSpy).toHaveBeenCalledTimes(1)
+    expect(alertSpy).toHaveBeenCalledWith('Logging you out')
+    
     alertSpy.mockRestore()
 })
 
-test('checks that alert function is called with "Logging you out" message', () => {
+test('Checks that alert function is called with "Logging you out" message', () => {
     const alertSpy = jest.spyOn(window, 'alert').mockImplementation()
     render(<App />)
     fireEvent.keyDown(document, {
@@ -55,11 +67,29 @@ test('checks that alert function is called with "Logging you out" message', () =
     alertSpy.mockRestore()
 })
 
-test('check that a title with the text News from the School, and a paragraph element with the text Holberton School News goes here are displayed by default in the App component', () => {
+test('Checks that a title with the text News from the School, and a paragraph element with the text Holberton School News goes here are displayed by default in the App component', () => {
     render(<App />)
     const bodySectionTitle = screen.getByText(/news from the school/i)
-    // const bodySectionParagraph = screen.getByText(/holberton school news goes here/i)
 
     expect(bodySectionTitle).toBeInTheDocument()
-    // expect(bodySectionParagraph).toBeInTheDocument()
+})
+
+test('Checks that login method prop is correctly called with the user’s email and password when the login form is submitted', async() => {
+    const user = userEvent.setup()
+
+    render(<App />)
+
+    const emailInput = screen.getByLabelText(/email/i)
+    const passwordInput = screen.getByLabelText(/password/i)
+    const submitButton = screen.getByRole('button', { name: /ok/i })
+
+    expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
+
+    await user.type(emailInput, 'gina.linetti@nypd.com')
+    await user.type(passwordInput, 'verybadpassword')
+    await user.click(submitButton)
+
+    expect(screen.getByRole('table')).toBeInTheDocument()
+    expect(screen.queryByText(/^login to access the full dashboard$/i)).not.toBeInTheDocument()
 })
