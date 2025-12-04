@@ -1,6 +1,5 @@
 import React from 'react'
 import holbertonLogo from '../assets/holberton-logo.jpg'
-// eslint-disable-next-line no-unused-vars
 import newContext from '../Context/context'
 
 class Header extends React.Component {

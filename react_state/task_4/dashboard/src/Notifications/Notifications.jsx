@@ -1,24 +1,19 @@
-import React from 'react'
+import { PureComponent } from 'react'
 import NotificationItem from './NotificationItem'
 import closeButton from '../assets/close-button.png'
 
-class Notifications extends React.Component {
+class Notifications extends PureComponent {
     constructor(props) {
         super(props)
     }
-    shouldComponentUpdate(nextProps) {
-        if (nextProps.notifications.length !== this.props.notifications.length || 
-            nextProps.displayDrawer !== this.props.displayDrawer) {
-            return true
-        }
-        return false
-    }
-    markAsRead(id) {
-        console.log(`Notification ${id} has been marked as read`)
-    }
 
     render() {
-        const { displayDrawer = false, notifications = [], handleDisplayDrawer, handleHideDrawer } = this.props
+        const { 
+            displayDrawer = false, 
+            notifications = [], 
+            handleDisplayDrawer, 
+            handleHideDrawer, 
+            markNotificationAsRead } = this.props
 
         return (
             <>
@@ -45,7 +40,7 @@ class Notifications extends React.Component {
                                                 type={notification.type}
                                                 value={notification.value}
                                                 html={notification.html}
-                                                markAsRead={this.markAsRead}
+                                                markAsRead={markNotificationAsRead}
                                                 id={notification.id}
                                             />
                                         ))}

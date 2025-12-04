@@ -93,3 +93,17 @@ test('Checks that login method prop is correctly called with the user’s email 
     expect(screen.getByRole('table')).toBeInTheDocument()
     expect(screen.queryByText(/^login to access the full dashboard$/i)).not.toBeInTheDocument()
 })
+
+test('Clicking on a notification item removes it from the list and logs the expected string', async() => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const notificationItem = screen.getByText(/new course available/i)
+    expect(notificationItem).toBeInTheDocument()
+
+    await user.click(notificationItem)
+
+    expect(screen.queryByText(/new course available/i)).not.toBeInTheDocument()
+
+    expect(consoleSpy).toHaveBeenCalledWith("Notification 1 has been marked as read")
+})

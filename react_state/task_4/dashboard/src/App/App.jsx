@@ -10,18 +10,6 @@ import { getLatestNotification } from '../utils/utils'
 // eslint-disable-next-line no-unused-vars
 import newContext from '../Context/context'
 
-const notificationsList = [
-  { id: 1, type: 'default', value: 'New course available' },
-  { id: 2, type: 'urgent', value: 'New resume available' },
-  { id: 3, type: 'urgent', html: { __html: getLatestNotification() } }
-]
-
-const coursesList = [
-  { id: 1, name: 'ES6', credit: 60 },
-  { id: 2, name: 'Webpack', credit: 20 },
-  { id: 3, name: 'React', credit: 40 }
-]
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -32,6 +20,16 @@ class App extends React.Component {
         password: '',
         isLoggedIn: false
       },
+      notifications: [
+        { id: 1, type: 'default', value: 'New course available' },
+        { id: 2, type: 'urgent', value: 'New resume available' },
+        { id: 3, type: 'urgent', html: { __html: getLatestNotification() } }
+      ],
+      courses: [
+        { id: 1, name: 'ES6', credit: 60 },
+        { id: 2, name: 'Webpack', credit: 20 },
+        { id: 3, name: 'React', credit: 40 }
+      ]
     }
   }
 
@@ -78,8 +76,15 @@ class App extends React.Component {
     this.setState({ displayDrawer: false })
   }
 
+  markNotificationAsRead = (id) => {
+    console.log(`Notification ${id} has been marked as read`)
+    const updatedNotifications = this.state.notifications.filter(notification => notification.id !== id)
+
+    this.setState({ notifications: updatedNotifications })
+  }
+
   render() {
-    const { displayDrawer, user } = this.state
+    const { displayDrawer, user, notifications, courses } = this.state
 
     return (
       <>
@@ -90,17 +95,18 @@ class App extends React.Component {
           <div className="relative px-3 min-h-screen flex flex-col">
             <div className="absolute top-0 right-0 z-10">
               <Notifications
-                notifications={notificationsList}
+                notifications={notifications}
                 displayDrawer={displayDrawer}
                 handleDisplayDrawer={this.handleDisplayDrawer}
                 handleHideDrawer={this.handleHideDrawer}
+                markNotificationAsRead={this.markNotificationAsRead}
               />
             </div>
             <div className="flex-1">
               <Header />
               {user.isLoggedIn ? (
                 <BodySectionWithMarginBottom title="Course list">
-                  <CourseListWithLogging courses={coursesList} />
+                  <CourseListWithLogging courses={courses} />
                 </BodySectionWithMarginBottom>
               ) : (
                 <BodySectionWithMarginBottom title="Log in to continue">
