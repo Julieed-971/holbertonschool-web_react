@@ -22,6 +22,8 @@ function App() {
     { id: 2, type: 'urgent', value: 'New resume available' },
     { id: 3, type: 'urgent', html: { __html: getLatestNotification() } }
   ])
+
+// eslint-disable-next-line no-unused-vars
   const [courses, setCourses] = useState([
     { id: 1, name: 'ES6', credit: 60 },
     { id: 2, name: 'Webpack', credit: 20 },
@@ -55,7 +57,7 @@ function App() {
   const markNotificationAsRead = useCallback((id) => {
     console.log(`Notification ${id} has been marked as read`)
     setNotifications(prevNotifications => prevNotifications.filter(notification => notification.id !== id))
-  })
+  }, [])
 
   useEffect(() => {
     const handleLogout = (event) => {
