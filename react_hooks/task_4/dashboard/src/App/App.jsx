@@ -10,25 +10,24 @@ import { getLatestNotification } from '../utils/utils'
 // eslint-disable-next-line no-unused-vars
 import newContext from '../Context/context'
 
-function App() {
-  const [displayDrawer, setDisplayDrawer] = useState(true)
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-    isLoggedIn: false
-  })
-  const [notifications, setNotifications] = useState([
+const notificationsList = [
     { id: 1, type: 'default', value: 'New course available' },
     { id: 2, type: 'urgent', value: 'New resume available' },
     { id: 3, type: 'urgent', html: { __html: getLatestNotification() } }
-  ])
+  ]
 
-// eslint-disable-next-line no-unused-vars
-  const [courses, setCourses] = useState([
+const coursesList = [
     { id: 1, name: 'ES6', credit: 60 },
     { id: 2, name: 'Webpack', credit: 20 },
     { id: 3, name: 'React', credit: 40 }
-  ])
+  ]
+
+function App() {
+  const [displayDrawer, setDisplayDrawer] = useState(true)
+  const [user, setUser] = useState({ ...newContext.user })
+  const [notifications, setNotifications] = useState(notificationsList)
+// eslint-disable-next-line no-unused-vars
+  const [courses, setCourses] = useState(coursesList)
 
   const logIn = useCallback((email, password) => {
     setUser({
