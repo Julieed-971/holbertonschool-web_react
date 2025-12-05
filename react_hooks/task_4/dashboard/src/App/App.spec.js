@@ -107,3 +107,56 @@ test('Clicking on a notification item removes it from the list and logs the expe
 
     expect(consoleSpy).toHaveBeenCalledWith("Notification 1 has been marked as read")
 })
+
+test('functionality of handleDisplayDrawer and handleHideDrawer', async() => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const notificationTitle = screen.getByText(/here is the list of notifications/i)
+    expect(notificationTitle).toBeInTheDocument()
+
+    const closeButton = screen.getByRole('button', {name: /close/i})
+
+    await user.click(closeButton)
+
+    expect(notificationTitle).not.toBeInTheDocument()
+    expect(closeButton).not.toBeInTheDocument()
+})
+
+test('logIn updates user email, password, and isLoggedIn', async() => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const emailInput = screen.getByLabelText(/email/i)
+    const passwordInput = screen.getByLabelText(/password/i)
+    const submitButton = screen.getByRole('button', { name: /ok/i })
+
+    await user.type(emailInput, 'amy.santiago@nypd.com')
+    await user.type(passwordInput, 'verybadpassword')
+    await user.click(submitButton)
+
+    expect(screen.getByText(/welcome amy.santiago@nypd.com/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', {name: /logout/i})).toBeInTheDocument()
+})
+
+test('logOut resets user state', async() => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const emailInput = screen.getByLabelText(/email/i)
+    const passwordInput = screen.getByLabelText(/password/i)
+    const submitButton = screen.getByRole('button', { name: /ok/i })
+
+    await user.type(emailInput, 'amy.santiago@nypd.com')
+    await user.type(passwordInput, 'verybadpassword')
+    await user.click(submitButton)
+
+    expect(screen.getByText(/welcome amy.santiago@nypd.com/i)).toBeInTheDocument()
+    const logOutButton = screen.getByRole('link', {name: /logout/i})
+
+    await user.click(logOutButton)
+
+    expect(screen.queryByText(/welcome amy.santiago@nypd.com (logout)/i)).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', {name: /logout/i})).not.toBeInTheDocument()
+    expect(screen.getByText(/^login to access the full dashboard$/i)).toBeInTheDocument()
+})
