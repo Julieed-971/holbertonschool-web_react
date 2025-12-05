@@ -1,7 +1,5 @@
 ### Task 2. Convert Login component
 
-</summary>
-
 Copy the content of `task_0` into a new folder called `task_1`, and apply the following changes:
 
 Instructions:
