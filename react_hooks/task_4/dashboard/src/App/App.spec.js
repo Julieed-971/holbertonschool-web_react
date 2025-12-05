@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import App from './App.jsx'
 import userEvent from '@testing-library/user-event'
 
@@ -44,29 +44,6 @@ test('Renders the CourseList component when isLoggedIn is true', async() => {
     expect(screen.getByRole('table')).toBeInTheDocument()
 })
 
-test('Verify that alert is called once when ctrl+h are pressed', () => {
-    const alertSpy = jest.spyOn(window, 'alert').mockImplementation()
-
-    render(<App />)
-
-    fireEvent.keyDown(document, {key: 'h', ctrlKey: true})
-    expect(alertSpy).toHaveBeenCalledTimes(1)
-    expect(alertSpy).toHaveBeenCalledWith('Logging you out')
-    
-    alertSpy.mockRestore()
-})
-
-test('Checks that alert function is called with "Logging you out" message', () => {
-    const alertSpy = jest.spyOn(window, 'alert').mockImplementation()
-    render(<App />)
-    fireEvent.keyDown(document, {
-        key: 'h',
-        ctrlKey: true
-    })
-    expect(alertSpy).toHaveBeenCalledWith('Logging you out')
-    alertSpy.mockRestore()
-})
-
 test('Checks that a title with the text News from the School, and a paragraph element with the text Holberton School News goes here are displayed by default in the App component', () => {
     render(<App />)
     const bodySectionTitle = screen.getByText(/news from the school/i)
@@ -108,19 +85,32 @@ test('Clicking on a notification item removes it from the list and logs the expe
     expect(consoleSpy).toHaveBeenCalledWith("Notification 1 has been marked as read")
 })
 
-test('functionality of handleDisplayDrawer and handleHideDrawer', async() => {
+test('handleDisplayDrawer sets displayDrawer to true', async() => {
     const user = userEvent.setup()
     render(<App />)
 
+    const closeButton = screen.getByRole('button', {name: /close/i})
+    await user.click(closeButton)
+    
+    const yourNotifications = screen.getByText(/your notifications/i)
+    await user.click(yourNotifications)
+
     const notificationTitle = screen.getByText(/here is the list of notifications/i)
+    
     expect(notificationTitle).toBeInTheDocument()
+    expect(closeButton).not.toBeInTheDocument()
+})
+
+test('handleHideDrawer sets displayDrawer to false', async() => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    expect(screen.getByText(/here is the list of notifications/i)).toBeInTheDocument()
 
     const closeButton = screen.getByRole('button', {name: /close/i})
-
     await user.click(closeButton)
 
-    expect(notificationTitle).not.toBeInTheDocument()
-    expect(closeButton).not.toBeInTheDocument()
+    expect(screen.queryByText(/here is the list of notifications/i)).not.toBeInTheDocument()
 })
 
 test('logIn updates user email, password, and isLoggedIn', async() => {

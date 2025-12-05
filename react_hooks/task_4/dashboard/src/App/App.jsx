@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import BodySection from '../BodySection/BodySection'
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
 import Notifications from '../Notifications/Notifications'
@@ -58,22 +58,6 @@ function App() {
     console.log(`Notification ${id} has been marked as read`)
     setNotifications(prevNotifications => prevNotifications.filter(notification => notification.id !== id))
   }, [])
-
-  useEffect(() => {
-    const handleLogout = (event) => {
-      if (event.ctrlKey && event.key === "h") {
-        alert('Logging you out')
-        logOut()
-      }
-    }
-
-    document.addEventListener("keydown", handleLogout)
-
-    return () => {
-      document.removeEventListener("keydown", handleLogout)
-    }
-  }, [logOut])
-
 
   return (
     <>
