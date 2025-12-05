@@ -1,31 +1,23 @@
-### Task 2. Convert Login component
+### Task 3. Update the NotificationItem component
 
-Copy the content of `task_0` into a new folder called `task_1`, and apply the following changes:
+Memoization has been part of React's optimization tools since the introduction of PureComponent in 2016 and has evolved to support functional components.
 
-Instructions:
+In this task and the one that follows, you'll transform the notification system from a class-based implementation to modern functional components while maintaining performance optimizations.
 
-  - Convert the Login class component to a functional component.
+**Instructions:**
 
-Initialize state using React hooks:
+- Convert the `NotificationItem` component from class syntax to function syntax
+  - Consider replacing the functionality of PureComponent with React's memo for memoization
+- Maintain existing prop structures as they are
+- Preserve current rendering behavior:
+  - Ensure the component only re-renders when notification items update
+- Maintain existing click handlers by keeping the notification "mark as read" functionality intact
 
-  - Create a state variable `enableSubmit` and its setter function `setEnableSubmit` with an initial value of false.
-  - Create a state variable `formData` and its setter function `setFormData` with an initial value of `{ email: '', password: '' }`.
+**Hint:** When converting class components to functional components, you'll need to update your tests accordingly
 
-Update the class methods `handleChangeEmail` and `handleChangePassword` to functions:
+**Requirements:**
 
-  - Extract the email and password from the event target.
-  - Use `setFormData` to update the `formData` state, keeping the existing email and password.
-  - Update the `enableSubmit` state based on email and password validation rules, and the password length.
-
-Update the class method `handleLoginSubmit` to a function:
-
-  - Always prevent the default behavior of the form submission.
-  - Call the login prop method with the current email and password.
-
-Requirements:
-
-  - Keep the same structure of the component and update the state and methods.
-  - Preserve the existing validation logic for email, password, and the submit button enabling/disabling.
-  - Keep the `WithLogging` HOC wrapper class usage as it is.
-  - Ensure that there are no console errors or warnings.
-  - The code should have no lint errors.
+- Maintain performance characteristics of the original implementation
+- All existing tests should PASS
+- Ensure there are no console errors or warnings
+- The code should have no lint errors

@@ -1,23 +1,22 @@
-### Task 3. Update the NotificationItem component
+### Task 4. Update the Notifications component
 
-Memoization has been part of React's optimization tools since the introduction of PureComponent in 2016 and has evolved to support functional components.
+</summary>
 
-In this task and the one that follows, you'll transform the notification system from a class-based implementation to modern functional components while maintaining performance optimizations.
+In this task, you'll continue working on updating the notification system by modifying the `Notifications.jsx` file.
 
 **Instructions:**
 
-- Convert the `NotificationItem` component from class syntax to function syntax
-  - Consider replacing the functionality of PureComponent with React's memo for memoization
-- Maintain existing prop structures as they are
-- Preserve current rendering behavior:
-  - Ensure the component only re-renders when notification items update
-- Maintain existing click handlers by keeping the notification "mark as read" functionality intact
+- Apply the same steps from the previous task to update the `Notifications.jsx` component from a class-based to a functional component
+  - Use React.memo for memoization to prevent unnecessary re-renders
+- Ensure that the component triggers a re-render only if the comparison inside memo returns false
+- All functionalities created previously within the `Notifications` and `NotificationItem` components should continue to work as expected
 
 **Hint:** When converting class components to functional components, you'll need to update your tests accordingly
 
 **Requirements:**
 
-- Maintain performance characteristics of the original implementation
-- All existing tests should PASS
+- Your Notifications system should trigger a re-render only if the comparison in memo returns false
+- Ensure all previously implemented functionalities within both the `Notifications` and `NotificationItem` components remain functional
+- All existing tests must pass
 - Ensure there are no console errors or warnings
 - The code should have no lint errors
