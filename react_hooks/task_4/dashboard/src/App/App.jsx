@@ -7,7 +7,6 @@ import LoginWithLogging from '../Login/Login'
 import Footer from '../Footer/Footer'
 import CourseListWithLogging from '../CourseList/CourseList'
 import { getLatestNotification } from '../utils/utils'
-// eslint-disable-next-line no-unused-vars
 import newContext from '../Context/context'
 
 const notificationsList = [
