@@ -1,32 +1,58 @@
-import { useState, useCallback } from 'react'
+import axios from 'axios'
 import BodySection from '../BodySection/BodySection'
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
-import Notifications from '../Notifications/Notifications'
+import CourseListWithLogging from '../CourseList/CourseList'
+import Footer from '../Footer/Footer'
+import { getLatestNotification } from '../utils/utils'
 import Header from '../Header/Header'
 import LoginWithLogging from '../Login/Login'
-import Footer from '../Footer/Footer'
-import CourseListWithLogging from '../CourseList/CourseList'
-import { getLatestNotification } from '../utils/utils'
 import newContext from '../Context/context'
-
-const notificationsList = [
-    { id: 1, type: 'default', value: 'New course available' },
-    { id: 2, type: 'urgent', value: 'New resume available' },
-    { id: 3, type: 'urgent', html: { __html: getLatestNotification() } }
-  ]
-
-const coursesList = [
-    { id: 1, name: 'ES6', credit: 60 },
-    { id: 2, name: 'Webpack', credit: 20 },
-    { id: 3, name: 'React', credit: 40 }
-  ]
+import Notifications from '../Notifications/Notifications'
+import { useState, useCallback, useEffect } from 'react'
 
 function App() {
   const [displayDrawer, setDisplayDrawer] = useState(true)
   const [user, setUser] = useState({ ...newContext.user })
-  const [notifications, setNotifications] = useState(notificationsList)
-// eslint-disable-next-line no-unused-vars
-  const [courses, setCourses] = useState(coursesList)
+  const [notifications, setNotifications] = useState([])
+  const [courses, setCourses] = useState([])
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('/notifications.json')
+        const fetchedNotifications = response.data.notifications
+        const updatedNotifications = fetchedNotifications.map(notif => {
+          if (notif.html && notif.html.__html === "") {
+            return {
+              ...notif,
+              html: { __html: getLatestNotification() }
+            }
+          }
+          return notif
+        })
+        setNotifications(updatedNotifications)
+      } catch (error) {
+        console.error('Error fetching notifications', error)
+      }
+    }
+    fetchNotifications()
+  }, [])
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        if (user.isLoggedIn) {
+          const response = await axios.get('/courses.json')
+          setCourses(response.data.courses)
+        } else {
+          setCourses([])
+        }
+      }  catch (error) {
+        console.error('Error fetching courses', error)
+      }
+    }
+    fetchCourses()
+  }, [user])
 
   const logIn = useCallback((email, password) => {
     setUser({
