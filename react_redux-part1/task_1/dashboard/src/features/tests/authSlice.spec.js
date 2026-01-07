@@ -1,4 +1,4 @@
-import authReducer, { login, logout } from '../features/auth/authSlice';
+import authReducer, { login, logout } from '../auth/authSlice';
 
 test('The authSlice should return the correct initial state by default', () => {
     const state = authReducer(undefined, { type: 'unknown' });
