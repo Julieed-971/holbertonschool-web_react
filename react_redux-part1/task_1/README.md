@@ -27,3 +27,67 @@ In this task, you'll create your first Redux slice to manage authentication stat
 - All unit tests PASS (both new and existing)
 - No console warnings or errors
 - No lint errors
+
+### Task 2. Notifications Slice
+
+In this task, you will create a Redux slice called `notificationsSlice` to manage the notifications state of a React application.
+
+This slice will handle fetching notifications, marking notifications as read, and controlling the visibility of the notifications drawer.
+
+In the `notificationsSlice.js` file:
+
+Create an `initialState` object to represent the initial notifications state. This object should include:
+
+- A `notifications` array: Initialized as an empty array.
+- A `displayDrawer` boolean: Initialized as true.
+
+**Set Up the API Configuration:**
+
+- Define a constant `API_BASE_URL` to store the base URL of your API (e.g., `http://localhost:5173`)
+- Create an `ENDPOINTS` object to store the API endpoints. For this task, include:
+  - notifications: The endpoint to fetch notifications (e.g., `${API_BASE_URL}/notifications.json`)
+
+**Create and export the `fetchNotifications` Async Thunk:**
+
+- Use the `createAsyncThunk` function to handle fetching notifications from the API
+- Provide the action type string `'notifications/fetchNotifications'` as the first argument to createAsyncThunk
+- The thunk should:
+  - Fetch the notifications from the ENDPOINTS.notifications endpoint
+  - Update the notification with id `3 to include the latest notification from the `getLatestNotification` utility function
+  - Return the updated notifications array.
+
+Create the `notificationsSlice` object using the Redux Toolkit `createSlice` function, and ensure that:
+
+- The slice is named `notifications`
+- The `initialState` object is passed as the default state of the slice
+- The slice includes the following reducers:
+  - `markNotificationAsRead` Reducer:
+    - Removes a notification from the notifications array based on its id
+    - Log to console the removed notification id (the same you applied in the markNotificationAsRead handler before)
+  - `showDrawer` Reducer:
+    - Sets displayDrawer to true
+  - `hideDrawer` Reducer:
+    - Sets displayDrawer to false.
+- The slice includes an `extraReducers` section to handle the `fetchNotifications` async thunk:
+  - Updates the notifications array with the fetched data when the fetchNotifications thunk is fulfilled.
+- Don't forget to export the `notificationsSlice` reducer as the default export and the actions (`markNotificationAsRead`, `showDrawer`, `hideDrawer`) as named exports.
+
+**Tip:**
+
+The `showDrawer` and `hideDrawer` actions are simple state updates, so there's no need for a payload.
+
+**Tests:**
+
+Check that the `notificationsSlice`:
+
+- Returns the correct initial state by default
+- fetches notifications data correctly
+- Removes a notification correctly when the `markNotificationAsRead` action is dispatched
+- Toggles the `displayDrawer` state correctly when the `showDrawer` and `hideDrawer` actions are dispatched
+
+**Requirements:**
+
+- Your React application's core features and state management remain intact and work as expected
+- Your new unit tests PASS
+- No console warnings or errors
+- No lint errors.
