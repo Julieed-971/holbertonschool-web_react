@@ -28,11 +28,11 @@ test("fetches notifications data correctly", async () => {
     }
     const action = {
       type: fetchNotifications.fulfilled.type,
-      payload: mockNotificationsResponse
+      payload: mockNotificationsResponse.notifications
     }
 
     const newState = notificationsReducer(initialState, action);
-    expect(newState.notifications).toStrictEqual(mockNotificationsResponse);
+    expect(newState.notifications).toStrictEqual(mockNotificationsResponse.notifications);
 })
 
 test("Removes a notification correctly when the markNotificationAsRead action is dispatched", () => {
