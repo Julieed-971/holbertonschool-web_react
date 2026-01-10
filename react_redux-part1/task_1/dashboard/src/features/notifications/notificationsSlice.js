@@ -45,10 +45,10 @@ const notificationsSlice = createSlice({
     initialState,
     reducers: {
         markNotificationAsRead: (state, action) => {
-            console.log(`Notification ${action.payload} has been marked as read`);
             state.notifications = state.notifications.filter(
                 notification => notification.id !== action.payload
             );
+            console.log(`Notification ${action.payload} has been marked as read`);
         },
         showDrawer: (state) => {
             state.displayDrawer = true;
