@@ -1,4 +1,9 @@
 import notificationsReducer, { markNotificationAsRead, showDrawer, hideDrawer, fetchNotifications } from "../../features/notifications/notificationsSlice"
+import mockAxios from 'jest-mock-axios';
+
+afterEach(() => {
+  mockAxios.reset();
+});
 
 const mockNotificationsResponse = {
     notifications: [
@@ -61,4 +66,37 @@ test("Toggles the displayDrawer state correctly when the showDrawer and hideDraw
     const showState = notificationsReducer(hiddenState, newAction);
 
     expect(showState.displayDrawer).toBe(true);
+})
+
+test('should handle fetchNotifications.fulfilled when API request is successful', async () => {
+    const notifications = [
+      { id: 1, type: "default", value: "New course available" },
+      { id: 2, type: "urgent", value: "New resume available" },
+      { id: 3, type: 'urgent', html: { __html: '<strong>Urgent requirement</strong>' } },
+    ];
+
+    const dispatch = jest.fn();
+    const getState = jest.fn();
+
+    const promise = fetchNotifications()(dispatch, getState, null);
+
+    mockAxios.mockResponse({
+      data: { notifications }
+    });
+
+    await promise;
+
+    expect(dispatch).toHaveBeenCalledTimes(2);
+
+    const fulfilledAction = dispatch.mock.calls[1][0];
+
+    expect(fulfilledAction).toEqual(
+      expect.objectContaining({
+        type: fetchNotifications.fulfilled.type,
+        payload: expect.any(Array),
+      })
+    );
+
+    expect(fulfilledAction.payload).toHaveLength(3);
+    expect(fulfilledAction.payload).not.toEqual([]);
 })
