@@ -51,7 +51,19 @@ test("Removes a notification correctly when the markNotificationAsRead action is
     expect(newState.notifications).toStrictEqual(markedAsReadNotificationsResponse.notifications);
 })
 
-test("Toggles the displayDrawer state correctly when the showDrawer and hideDrawer actions are dispatched", () => {
+test("Toggles the displayDrawer state correctly when the hideDrawer action is dispatched", () => {
+    const previousState = {
+      notifications: [],
+      displayDrawer: false
+    };
+
+    const action = showDrawer();
+    const hiddenState = notificationsReducer(previousState, action);
+
+    expect(hiddenState.displayDrawer).toBe(true);
+})
+
+test("Toggles the displayDrawer state correctly when the hideDrawer action is dispatched", () => {
     const previousState = {
       notifications: [],
       displayDrawer: true
@@ -61,11 +73,6 @@ test("Toggles the displayDrawer state correctly when the showDrawer and hideDraw
     const hiddenState = notificationsReducer(previousState, action);
 
     expect(hiddenState.displayDrawer).toBe(false);
-
-    const newAction = showDrawer();
-    const showState = notificationsReducer(hiddenState, newAction);
-
-    expect(showState.displayDrawer).toBe(true);
 })
 
 test('should handle fetchNotifications.fulfilled when API request is successful', async () => {
