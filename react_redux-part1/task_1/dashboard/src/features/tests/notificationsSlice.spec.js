@@ -97,6 +97,32 @@ test('State.notifications is correctly updated when fetchNotifications succeeds'
   expect(newState.notifications).not.toEqual([]);
 });
 
+test('should verify payload contains expected notification structure', async () => {
+  const mockNotifications = [
+    { id: 1, type: 'default', value: 'Not important' },
+    { id: 2, type: 'urgent', value: 'Very important' }
+  ];
+
+  const dispatch = jest.fn();
+  const getState = jest.fn();
+
+  const promise = fetchNotifications()(dispatch, getState, null);
+  mockAxios.mockResponse({ data: { notifications: mockNotifications } });
+  await promise;
+
+  const fulfilledAction = dispatch.mock.calls[1][0];
+
+  expect(fulfilledAction.payload).toHaveLength(3);
+  expect(fulfilledAction.payload.length).toBeGreaterThan(0);
+  expect(Array.isArray(fulfilledAction.payload)).toBe(true);
+
+  const notificationId3 = fulfilledAction.payload.find(notif => notif.id === 3);
+  expect(notificationId3).toBeDefined();
+  expect(notificationId3.html.__html).toBe("<strong>Urgent requirement</strong> - complete by EOD");
+
+  expect(fulfilledAction.payload[0]).toEqual({ id: 1, type: 'default', value: 'Not important' });
+  expect(fulfilledAction.payload[1]).toEqual({ id: 2, type: 'urgent', value: 'Very important' });
+});
 
 test("Removes a notification correctly when the markNotificationAsRead action is dispatched", () => {
   const previousState = {
