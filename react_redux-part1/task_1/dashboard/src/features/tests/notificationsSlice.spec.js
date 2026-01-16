@@ -82,7 +82,7 @@ test('State.notifications is correctly updated when fetchNotifications succeeds'
   const mockNotifications = [
     { id: 1, value: 'notification 1' },
     { id: 2, value: 'notification 2' },
-    { id: 3, type: 'urgent', html: { __html: 'It\s an emergency!' } }
+    { id: 3, type: 'urgent', html: { __html: 'It\'s an emergency!' } }
   ];
 
   const action = {
