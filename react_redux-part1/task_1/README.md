@@ -91,3 +91,52 @@ Check that the `notificationsSlice`:
 - Your new unit tests PASS
 - No console warnings or errors
 - No lint errors.
+
+### Task 3. Courses Slice
+
+In this task, you will create a Redux slice called `coursesSlice` to manage the courses state of a React application.
+
+This slice will handle fetching courses from an API and resetting the courses state when the user logs out.
+
+Create an `initialState` object to represent the initial courses state. This object should include:
+
+- A courses array: Initialized as an empty array
+
+**Set Up the API Configuration:**
+
+Define a constant `API_BASE_URL` to store the base URL of your API (e.g., `http://localhost:5173`) Create an ENDPOINTS object to store the API endpoints. For this task, include:
+
+- courses: The endpoint to fetch courses (e.g., `${API_BASE_URL}/courses.json`)
+
+**Create and export the `fetchCourses` Async Thunk:**
+
+- Use the `createAsyncThunk` function to handle fetching courses from the API
+- Provide the action type string `'courses/fetchCourses'` as the first argument to createAsyncThunk
+- The thunk should:
+  - Fetch the courses from the ENDPOINTS.courses endpoint
+  - Return the fetched courses data.
+
+**Create the `coursesSlice`:**
+
+- Use the Redux Toolkit `createSlice` function to create the slice. Ensure that:
+  - The slice is named `courses`
+  - The `initialState` object is passed as the default state of the slice
+  - The slice includes an `extraReducers` section to handle the fetchCourses async thunk:
+    - Updates the courses array with the fetched data when the fetchCourses thunk is fulfilled
+- The slice listens for the `logout` action from the `authSlice` and resets the courses state to its initial value
+- Export the `coursesSlice` reducer as the default export
+
+**Tests:**
+
+Check that the `coursesSlice`:
+
+- Returns the correct initial state by default
+- fetches correctly the courses data
+- resets the courses array to empty whenever the `logout` action is dispatched
+
+**Requirements:**
+
+- Your React application's core features and state management remain intact and work as expected
+- All your new unit tests PASS
+- No console warnings or errors
+- No lint errors
