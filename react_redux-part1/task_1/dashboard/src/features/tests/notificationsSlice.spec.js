@@ -13,6 +13,11 @@ const mockNotificationsResponse = {
   ]
 };
 
+const initialState = {
+  notifications: [],
+  displayDrawer: true
+}
+
 const markedAsReadNotificationsResponse = {
   notifications: [
     { id: 2, type: 'urgent', value: 'New resume available' },
@@ -47,8 +52,6 @@ test("fetches notifications data correctly", async () => {
 
   // 6. Get the fulfilledAction from the second dispatch call
   const fulfilledAction = dispatch.mock.calls[1][0];
-  console.log("Fulfilled Action:", fulfilledAction);
-  console.log("Payload:", fulfilledAction.payload);
 
   // 7. Test the structure: Expect payload to be an array with 3 items
   expect(fulfilledAction.payload).toHaveLength(3);
@@ -66,10 +69,6 @@ test("fetches notifications data correctly", async () => {
 })
 
 test('Handle fetchNotifications.pending correctly', () => {
-  const initialState = {
-    notifications: [],
-    displayDrawer: true
-  }
   const action = { type: fetchNotifications.pending.type };
   const state = notificationsReducer(initialState, action);
 
@@ -78,6 +77,26 @@ test('Handle fetchNotifications.pending correctly', () => {
     displayDrawer: true
   });
 })
+
+test('State.notifications is correctly updated when fetchNotifications succeeds', () => {
+  const mockNotifications = [
+    { id: 1, value: 'notification 1' },
+    { id: 2, value: 'notification 2' },
+    { id: 3, type: 'urgent', html: { __html: 'It\s an emergency!' } }
+  ];
+
+  const action = {
+    type: fetchNotifications.fulfilled.type,
+    payload: mockNotifications
+  };
+
+  const newState = notificationsReducer(initialState, action);
+
+  expect(newState.notifications).toEqual(mockNotifications);
+  expect(newState.notifications).toHaveLength(3);
+  expect(newState.notifications).not.toEqual([]);
+});
+
 
 test("Removes a notification correctly when the markNotificationAsRead action is dispatched", () => {
   const previousState = {
