@@ -18,3 +18,20 @@ Export the `rootReducer` as the default export of the module
 
 - No console warnings or errors
 - No lint errors
+
+### Task 5. Set the Store
+
+</summary>
+
+In this task, you will configure a Redux store for a React application using the `configureStore` function from Redux Toolkit
+
+The store will use a root reducer to manage the overall state of the application
+
+Use the `configureStore` function from Redux Toolkit to create the Redux store and pass the `rootReducer` as the reducer property in the store configuration
+
+Export the configured store as the default export of the module.
+
+**Requirements:**
+
+- No console warnings or errors.
+- No lint errors in the code.
