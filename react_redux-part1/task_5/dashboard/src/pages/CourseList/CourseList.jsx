@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 });
 
 function CourseList() {
-  const courses = useSelector(state => state.courses);
+  const { courses } = useSelector(state => state.courses);
 
   return (
     <div className={css(styles.courses)}>
