@@ -1,6 +1,7 @@
 import { StyleSheet, css } from 'aphrodite';
 import CourseListRow from './CourseListRow/CourseListRow';
 import WithLogging from '../../components/HOC/WithLogging';
+import { useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
   courses: {
@@ -24,7 +25,9 @@ const styles = StyleSheet.create({
   }
 });
 
-function CourseList({ courses = [] }) {
+function CourseList() {
+  const courses = useSelector(state => state.courses);
+
   return (
     <div className={css(styles.courses)}>
       {
