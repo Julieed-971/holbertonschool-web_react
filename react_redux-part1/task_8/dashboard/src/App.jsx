@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
-  const { isLoggedIn } = useSelector(state => state.auth);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   const dispatch = useDispatch();
 
