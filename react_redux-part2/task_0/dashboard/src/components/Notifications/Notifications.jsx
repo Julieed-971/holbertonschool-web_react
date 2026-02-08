@@ -102,7 +102,7 @@ const Notifications = memo(function Notifications() {
   const dispatch = useDispatch();
 
   const DrawerRef = useRef(null);
-  const isVisible = useRef(true);
+  const isVisible = useRef(false);
 
   const handleToggleDrawer = () => {
     isVisible.current = !isVisible.current;
