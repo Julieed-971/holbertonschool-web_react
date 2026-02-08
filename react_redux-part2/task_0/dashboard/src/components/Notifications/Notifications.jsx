@@ -103,15 +103,10 @@ const Notifications = memo(function Notifications() {
   const dispatch = useDispatch();
 
   const DrawerRef = useRef(null);
-  const isVisible = useRef(false);
 
   const handleToggleDrawer = () => {
-    isVisible.current = !isVisible.current;
-
-    if (isVisible.current) {
-      DrawerRef.current.className = css(styles.notificationItems, styles.visible);
-    } else {
-      DrawerRef.current.className = css(styles.notificationItems);
+    if (DrawerRef.current) {
+      DrawerRef.current.classList.toggle(css(styles.visible));
     }
   }
   const handleMarkNotificationAsRead = (id) => {
