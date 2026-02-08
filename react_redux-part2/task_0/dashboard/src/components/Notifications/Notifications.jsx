@@ -96,17 +96,21 @@ const styles = StyleSheet.create({
 });
 
 const Notifications = memo(function Notifications() {
-  console.log('I\'m re-rendering!');
   const {
     notifications,
   } = useSelector(state => state.notifications);
   const dispatch = useDispatch();
 
   const DrawerRef = useRef(null);
+  const isVisible = useRef(true);
 
   const handleToggleDrawer = () => {
-    if (DrawerRef.current) {
-      DrawerRef.current.classList.toggle(css(styles.visible));
+    isVisible.current = !isVisible.current;
+
+    if (isVisible.current) {
+      DrawerRef.current.className = css(styles.notificationItems, styles.visible);
+    } else {
+      DrawerRef.current.className = css(styles.notificationItems);
     }
   }
   const handleMarkNotificationAsRead = (id) => {
