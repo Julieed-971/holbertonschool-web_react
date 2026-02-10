@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const initialState = {
   notifications: [],
+  loading: false,
 }
 
 const API_BASE_URL = "http://localhost:5173";
@@ -49,6 +50,13 @@ const notificationsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchNotifications.fulfilled, (state, action) => {
       state.notifications = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(fetchNotifications.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchNotifications.rejected, (state) => {
+      state.loading = false;
     });
   }
 });

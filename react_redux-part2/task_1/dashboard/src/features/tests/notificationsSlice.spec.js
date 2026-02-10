@@ -71,7 +71,8 @@ test('Handle fetchNotifications.pending correctly', () => {
   const state = notificationsReducer(initialState, action);
 
   expect(state).toEqual({
-    notifications: []
+    notifications: [],
+    loading: true
   });
 })
 

@@ -2,9 +2,7 @@ import { memo, useRef } from "react";
 import { StyleSheet, css } from "aphrodite";
 import closeIcon from "../../assets/close-icon.png";
 import NotificationItem from "../NotificationItem/NotificationItem";
-import {
-  markNotificationAsRead,
-} from '../../features/notifications/notificationsSlice'
+import { markNotificationAsRead } from '../../features/notifications/notificationsSlice'
 import { useDispatch, useSelector } from "react-redux";
 
 const opacityKeyframes = {
@@ -96,9 +94,7 @@ const styles = StyleSheet.create({
 });
 
 const Notifications = memo(function Notifications() {
-  const {
-    notifications,
-  } = useSelector(state => state.notifications);
+  const { notifications, loading } = useSelector(state => state.notifications);
   const dispatch = useDispatch();
 
   const DrawerRef = useRef(null);
@@ -124,7 +120,11 @@ const Notifications = memo(function Notifications() {
       >
         Your notifications
       </div>
-      {
+      {loading ? (
+        <div>
+          Loading...
+        </div>
+      ) : (
         <div
           ref={DrawerRef}
           className={css(styles.notificationItems)}>
@@ -155,6 +155,7 @@ const Notifications = memo(function Notifications() {
             <p className={css(styles.p)}>No new notifications for now</p>
           )}
         </div>
+      )
       }
     </>
   );
