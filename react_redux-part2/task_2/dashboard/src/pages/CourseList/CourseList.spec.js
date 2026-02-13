@@ -6,7 +6,7 @@ import { logout } from '../../features/auth/authSlice';
 import rootReducer from '../../app/rootReducer';
 import { act } from '@testing-library/react';
 import mockAxios from 'jest-mock-axios';
-import { fetchCourses, selectCourse, unSelectCourse } from '../../features/courses/coursesSlice';
+import { fetchCourses } from '../../features/courses/coursesSlice';
 
 
 afterEach(() => {
