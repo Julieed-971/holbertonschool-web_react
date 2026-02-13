@@ -26,14 +26,14 @@ const coursesSlice = createSlice({
     reducers: {
         selectCourse: (state, { payload }) => {
             const course = state.courses.find(
-                (course => course.id == payload))
+                course => course.id === payload)
             if (course) {
                 course.isSelected = true;
             }
         },
         unSelectCourse: (state, { payload }) => {
             const course = state.courses.find(
-                (course => course.id == payload))
+                course => course.id === payload)
             if (course) {
                 course.isSelected = false;
             }
