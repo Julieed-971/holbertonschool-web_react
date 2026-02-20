@@ -96,29 +96,16 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-
 const Notifications = memo(function Notifications() {
-  // Update the Notifications component:
-
   const { loading } = useSelector(state => state.notifications);
-  // Initialize a state variable currentFilter and its setter setCurrentFilter with an initial value of 'all'
   const [currentFilter, setCurrentFilter] = useState('all');
-  // Replace direct access/ usage of notifications with a filtered array retrieved using the getFilteredNotifications memoized selector
-  // store the result in a new variable filteredNotifications
   const filteredNotifications = useSelector(state => getFilteredNotifications(state, currentFilter));
-  // Added functions handleSetFilterUrgent and handleSetFilterDefault to toggle the current filter
   const handleSetFilterUrgent = () => {
     setCurrentFilter(currentFilter === "urgent" ? "all" : "urgent");
   }
   const handleSetFilterDefault = () => {
     setCurrentFilter(currentFilter === "default" ? "all" : "default");
   }
-  // Added buttons (‼️ for urgent and ?? for default) to toggle between filters
-  // The buttons should dynamically set the currentFilter state, updating the displayed notifications accordingly
-  // Adjusted to work with filteredNotifications rather than the full notifications array
-  // Simplified rendering based on the filtered state
   const dispatch = useDispatch();
 
   const DrawerRef = useRef(null);
