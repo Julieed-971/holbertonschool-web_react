@@ -26,18 +26,10 @@ const initialState = {
   notifications: [],
 }
 
-const markedAsReadNotificationsResponse = {
-  notifications: [
-    {
-      id: 2,
-      context: { type: 'urgent', isRead: false, value: 'New resume available' }
-    },
-    {
-      id: 3,
-      context: { type: 'urgent', isRead: false, value: 'New project to review' }
-    }
-  ]
-};
+const markedAsReadNotificationsResponse = [
+  { id: 2, type: 'urgent', isRead: false, value: 'New resume available' },
+  { id: 3, type: 'urgent', isRead: false, value: 'New project to review' }
+];
 
 test("Returns the correct initial state by default", () => {
   const state = notificationsReducer(undefined, { type: 'unknown' });
@@ -136,12 +128,16 @@ test('should verify payload contains expected notification structure', async () 
 
 test("Removes a notification correctly when the markNotificationAsRead action is dispatched", () => {
   const previousState = {
-    notifications: mockNotificationsResponse.notifications
+    notifications: [
+      { id: 1, type: 'default', isRead: false, value: 'New course available' },
+      { id: 2, type: 'urgent', isRead: false, value: 'New resume available' },
+      { id: 3, type: 'urgent', isRead: false, value: 'New project to review' }
+    ]
   }
   const action = markNotificationAsRead(1);
   const newState = notificationsReducer(previousState, action);
 
-  expect(newState.notifications).toStrictEqual(markedAsReadNotificationsResponse.notifications);
+  expect(newState.notifications).toStrictEqual(markedAsReadNotificationsResponse);
 })
 
 test("handle fetchNotifications.fulfilled when the API request is successful, and only render the unread notification items", async () => {
