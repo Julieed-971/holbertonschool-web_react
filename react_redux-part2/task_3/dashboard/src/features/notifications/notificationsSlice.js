@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getLatestNotification } from '../../utils/utils';
 import axios from 'axios';
 
 const initialState = {
@@ -15,26 +14,17 @@ const fetchNotifications = createAsyncThunk(
   'notifications/fetchNotifications',
   async () => {
     const response = await axios.get(ENDPOINTS.notifications);
-    const latestNotif = {
-      id: 3,
-      type: "urgent",
-      html: { __html: getLatestNotification() }
-    };
-
     const currentNotifications = response.data.notifications;
-    const indexToReplace = currentNotifications.findIndex(
-      notification => notification.id === 3
-    );
-
-    const updatedNotifications = [...currentNotifications];
-    if (indexToReplace !== -1) {
-      updatedNotifications[indexToReplace] = latestNotif;
-    } else {
-      updatedNotifications.push(latestNotif);
-    }
-    return updatedNotifications;
-  }
-)
+    const unreadNotifications = currentNotifications
+      .filter(currentNotification => currentNotification.context.isRead === false)
+      .map(currentNotification => ({
+        id: currentNotification.id,
+        type: currentNotification.context.type,
+        isRead: currentNotification.context.isRead,
+        value: currentNotification.context.value,
+      }));
+    return unreadNotifications;
+  });
 
 const notificationsSlice = createSlice({
   name: 'notifications',
