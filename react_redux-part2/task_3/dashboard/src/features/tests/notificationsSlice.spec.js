@@ -32,7 +32,7 @@ const markedAsReadNotificationsResponse = {
       id: 2,
       context: { type: 'urgent', isRead: false, value: 'New resume available' }
     },
-        {
+    {
       id: 3,
       context: { type: 'urgent', isRead: false, value: 'New project to review' }
     }
@@ -131,7 +131,7 @@ test('should verify payload contains expected notification structure', async () 
   expect(Array.isArray(fulfilledAction.payload)).toBe(true);
 
   expect(fulfilledAction.payload[0]).toEqual({ id: 1, type: 'default', isRead: false, value: 'Not important' });
-  expect(fulfilledAction.payload[1]).toEqual({ id: 2, type: 'urgent', isRead: false, value: 'Very important' } );
+  expect(fulfilledAction.payload[1]).toEqual({ id: 2, type: 'urgent', isRead: false, value: 'Very important' });
 });
 
 test("Removes a notification correctly when the markNotificationAsRead action is dispatched", () => {
@@ -144,4 +144,37 @@ test("Removes a notification correctly when the markNotificationAsRead action is
   expect(newState.notifications).toStrictEqual(markedAsReadNotificationsResponse.notifications);
 })
 
+test("handle fetchNotifications.fulfilled when the API request is successful, and only render the unread notification items", async () => {
+  const mockReadNotificationsResponse = {
+    notifications: [
+      {
+        id: 1,
+        context: { type: 'default', isRead: true, value: 'New course available' }
+      },
+      {
+        id: 2,
+        context: { type: 'urgent', isRead: false, value: 'New resume available' }
+      },
+      {
+        id: 3,
+        context: { type: 'urgent', isRead: false, value: 'New project to review' }
+      }
+    ]
+  };
 
+  const dispatch = jest.fn();
+  const getState = jest.fn();
+
+  const promise = fetchNotifications()(dispatch, getState, null);
+  mockAxios.mockResponse({ data: mockReadNotificationsResponse });
+  await promise;
+
+  const fulfilledAction = dispatch.mock.calls[1][0];
+
+  expect(fulfilledAction.payload).toHaveLength(2);
+  expect(fulfilledAction.payload.length).toBeGreaterThan(0);
+  expect(Array.isArray(fulfilledAction.payload)).toBe(true);
+
+  expect(fulfilledAction.payload[0]).toEqual({ id: 2, type: 'urgent', isRead: false, value: 'New resume available' });
+  expect(fulfilledAction.payload[1]).toEqual({ id: 3, type: 'urgent', isRead: false, value: 'New project to review' });
+});
