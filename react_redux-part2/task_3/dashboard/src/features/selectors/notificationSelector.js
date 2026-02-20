@@ -7,7 +7,7 @@ const selectedNotifications = state => state.notifications.notifications;
 //     The selector should accept two inputs:
 //         The notifications array retrieved from the Redux state
 //         A filter argument (e.g., urgent, default, or all)
-const getFilteredNotifications = createSelector(
+export const getFilteredNotifications = createSelector(
     [selectedNotifications, (state, filter) => filter],
     //     Filter logic:
     //         If the filter is all, return all notifications (no type check needed already handled within the fetchNotifications Thunk)
@@ -20,5 +20,3 @@ const getFilteredNotifications = createSelector(
         }
     }
 )
-
-export { getFilteredNotifications };

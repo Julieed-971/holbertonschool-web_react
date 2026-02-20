@@ -10,7 +10,7 @@ const API_BASE_URL = "http://localhost:5173";
 
 const ENDPOINTS = { notifications: `${API_BASE_URL}/notifications.json` };
 
-const fetchNotifications = createAsyncThunk(
+export const fetchNotifications = createAsyncThunk(
   'notifications/fetchNotifications',
   async () => {
     const response = await axios.get(ENDPOINTS.notifications);
@@ -52,5 +52,4 @@ const notificationsSlice = createSlice({
 });
 
 export const { markNotificationAsRead } = notificationsSlice.actions;
-export { fetchNotifications };
 export default notificationsSlice.reducer;
